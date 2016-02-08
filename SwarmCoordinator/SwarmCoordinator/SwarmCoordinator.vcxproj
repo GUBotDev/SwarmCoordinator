@@ -147,10 +147,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Calculation.h" />
+    <ClInclude Include="ControllerNode.h" />
+    <ClInclude Include="FollowerNode.h" />
+    <ClInclude Include="Movement.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Calculation.cpp" />
+    <ClCompile Include="ControllerNode.cpp" />
+    <ClCompile Include="FollowerNode.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Movement.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

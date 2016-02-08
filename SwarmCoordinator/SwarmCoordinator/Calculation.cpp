@@ -1,7 +1,7 @@
 #include "Calculation.h"
 
 std::pair<float, float> Calculation::multilateration(float* radius, float* x, float* y, int size) {
-	//2D Multilateration
+	//2D Multilateration - add 3D later (without removing 2d of course)
 	const int length = size;
 	int iterations = 0;
 	std::tuple<float, float, float, float> temp;

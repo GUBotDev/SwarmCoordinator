@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Calculation.h"
 
-//sample code
+//sample code - rm later
 int main() {
 	Calculation calcObj;
 	std::pair<float, float> position;
