@@ -11,7 +11,7 @@ void Movement::setFormation(int formation, ControllerNode controller) {
 		cross(controller);
 		break;
 	case 2:
-		square(controller);
+		diamond(controller);
 		break;
 	}
 }
@@ -20,19 +20,19 @@ void Movement::invertedV(ControllerNode controller) {
 	float pos;
 
 	if (controller.numOfBots % 2 == 1) {//odd number of robots
-		controller.numOfBots -= 1;
+		int bots = controller.numOfBots - 1;
 
-		for (int i = 0; i < controller.numOfBots / 2; i++) {
-			pos = i / 10;
+		for (int i = 0; i < bots; i += 2) {
+			pos = i / 10;//to change scaling change the divisor
 
 			controller.bots[i].moveToPosition(-pos, -pos);
 			controller.bots[i + 1].moveToPosition(pos, -pos);
 		}
-		
+
 		controller.bots[controller.numOfBots].moveToPosition(0, -pos);
 	}
 	else {
-		for (int i = 0; i < controller.numOfBots / 2; i++) {
+		for (int i = 0; i < controller.numOfBots; i += 2) {
 			pos = i / 10;
 
 			controller.bots[i].moveToPosition(-pos, -pos);
@@ -41,20 +41,83 @@ void Movement::invertedV(ControllerNode controller) {
 	}
 }
 
-void Movement::cross(ControllerNode controller) {
+void Movement::cross(ControllerNode controller) {//X
+	float pos;
 
+	if (controller.numOfBots % 2 == 1) {
+		int bots = controller.numOfBots - 1;
+
+		pos = controller.numOfBots / 10;
+
+		for (int i = 0; i < bots; i += 2) {
+			controller.bots[i].moveToPosition(-pos, pos);
+			controller.bots[i + 1].moveToPosition(pos, pos);
+
+			pos -= 0.1;
+		}
+	}
+	else {
+		pos = controller.numOfBots / 10;
+
+		for (int i = 0; i < controller.numOfBots; i += 2) {
+			controller.bots[i].moveToPosition(-pos, pos);
+			controller.bots[i + 1].moveToPosition(pos, pos);
+
+			pos -= 0.1;
+		}
+	}
 }
 
-void Movement::square(ControllerNode controller) {
+void Movement::diamond(ControllerNode controller) {
+	float pos;
+	float pos2;
+
+	if (controller.numOfBots % 2 == 1) {
+		int bots = controller.numOfBots - 1;
+		int halfBots = controller.numOfBots / 2;
+
+		for (int i = 0; i < bots; i += 2) {
+			pos = i / 10;//to change scaling change the divisor
+
+			if (i <= halfBots) {
+				controller.bots[i].moveToPosition(-pos, -pos);
+				controller.bots[i + 1].moveToPosition(pos, -pos);
+
+				pos2 = pos;
+			}
+			else if (i == controller.numOfBots) {
+				controller.bots[controller.numOfBots].moveToPosition(-pos, -pos);
+			}
+			else {
+				pos2 -= 1 / 10;
+
+				controller.bots[i].moveToPosition(-pos2, -pos);
+				controller.bots[i + 1].moveToPosition(pos2, -pos);
+			}
+		}
+	}
+	else {
+		int halfBots = controller.numOfBots / 2;
+
+		for (int i = 0; i < controller.numOfBots; i += 2) {
+			pos = i / 10;//to change scaling change the divisor
+
+			if (i <= halfBots) {
+				controller.bots[i].moveToPosition(-pos, -pos);
+				controller.bots[i + 1].moveToPosition(pos, -pos);
+
+				pos2 = pos;
+			}
+			else {
+				pos2 -= 1 / 10;
+
+				controller.bots[i].moveToPosition(-pos2, -pos);
+				controller.bots[i + 1].moveToPosition(pos2, -pos);
+			}
+		}
+	}
 
 }
-
-// ^
-// X
-// T
-// diamond
-// square
-// rotate formation
 
 /*
 0
@@ -76,12 +139,14 @@ void Movement::square(ControllerNode controller) {
 	  14          15
 	16              17
 2
-	3   1   A   2   4
-
-	5               6
-
+			A
+		  1   2
+		3       4
+	  5           6
 	7               8
-
-	9   11  13  12  10
+	  3           4
+		5       6
+		  7   8
+			9
 
 */

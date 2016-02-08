@@ -68,7 +68,7 @@ std::tuple<float, float, float, float> Calculation::twoCircleIntersect(float r1,
 	//circle intersection at imaginary points, a degenerate point, or two distinct points
 	dis = newX2; // distance is X2 in converted coordinates
 	disToCen = ((dis * dis) - (r2 * r2) + (r1 * r1)) / (2 * dis); // distance from x1, y1 to radical line
-																  //float halfLengthY = (4 * (dis * dis) * (r1 * r1) - ((dis * dis) - (r2 * r2) + (r1 * r1)) * ((dis * dis) - (r2 * r2) + (r1 * r1))) / (4 * (dis * dis));
+	//float halfLengthY = (4 * (dis * dis) * (r1 * r1) - ((dis * dis) - (r2 * r2) + (r1 * r1)) * ((dis * dis) - (r2 * r2) + (r1 * r1))) / (4 * (dis * dis));
 	fullLengthY = (1 / dis) * sqrt((-1 * dis + r2 - r1) * (-1 * dis - r2 + r1) * (-1 * dis + r2 + r1) * (dis + r2 + r1));
 	area =
 		((r2 * r2) * acos(((dis * dis) + (r2 * r2) - (r1 * r1)) / (2 * dis * r2))) +
@@ -78,7 +78,13 @@ std::tuple<float, float, float, float> Calculation::twoCircleIntersect(float r1,
 	//find xy offset of radical point
 	placementAngle = atan2(y2 - y1, x2 - x1);
 	oppSide = sin(placementAngle) / disToCen;
-	adjacSide = sqrt((disToCen * disToCen) + (oppSide * oppSide));
+
+	if (x1 - x2 < 0) {
+		adjacSide = sqrt((disToCen * disToCen) + (oppSide * oppSide)) * -1;
+	}
+	else if (x1 - x2 >= 0) {
+		adjacSide = sqrt((disToCen * disToCen) + (oppSide * oppSide));
+	}
 
 	centerX = baseX1 + adjacSide;
 	centerY = baseY1 + adjacSide;

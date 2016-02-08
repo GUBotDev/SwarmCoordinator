@@ -12,6 +12,5 @@ public:
 private:
 	void invertedV(ControllerNode controller);
 	void cross(ControllerNode controller);
-	void square(ControllerNode controller);
-
+	void diamond(ControllerNode controller);
 };

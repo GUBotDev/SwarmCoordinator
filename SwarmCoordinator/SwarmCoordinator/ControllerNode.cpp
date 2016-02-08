@@ -4,6 +4,6 @@ void ControllerNode::turn(float angle) {//once this is turned, all followers wil
 
 }
 
-void ControllerNode::moveToPosition(float x, float y) {
+void ControllerNode::moveToPosition(float x, float y) {// moves entire system - relative coordinates are changed
 
 }
