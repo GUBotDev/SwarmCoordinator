@@ -3,8 +3,6 @@
 #include <cmath>
 #include <array>
 #include <vector>
-#include "FollowerNode.h"
-#include "ControllerNode.h"
 
 class Movement {
 public:

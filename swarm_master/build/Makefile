@@ -57,6 +57,47 @@ edit_cache:
 edit_cache/fast: edit_cache
 .PHONY : edit_cache/fast
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+.PHONY : install/strip/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -66,6 +107,16 @@ rebuild_cache:
 # Special rule for the target rebuild_cache
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -99,6 +150,227 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named clean_test_results
+
+# Build rule for target.
+clean_test_results: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 clean_test_results
+.PHONY : clean_test_results
+
+# fast build rule for target.
+clean_test_results/fast:
+	$(MAKE) -f CMakeFiles/clean_test_results.dir/build.make CMakeFiles/clean_test_results.dir/build
+.PHONY : clean_test_results/fast
+
+#=============================================================================
+# Target rules for targets named clean_test_results_swarm_coordinator
+
+# Build rule for target.
+clean_test_results_swarm_coordinator: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 clean_test_results_swarm_coordinator
+.PHONY : clean_test_results_swarm_coordinator
+
+# fast build rule for target.
+clean_test_results_swarm_coordinator/fast:
+	$(MAKE) -f CMakeFiles/clean_test_results_swarm_coordinator.dir/build.make CMakeFiles/clean_test_results_swarm_coordinator.dir/build
+.PHONY : clean_test_results_swarm_coordinator/fast
+
+#=============================================================================
+# Target rules for targets named download_extra_data
+
+# Build rule for target.
+download_extra_data: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 download_extra_data
+.PHONY : download_extra_data
+
+# fast build rule for target.
+download_extra_data/fast:
+	$(MAKE) -f CMakeFiles/download_extra_data.dir/build.make CMakeFiles/download_extra_data.dir/build
+.PHONY : download_extra_data/fast
+
+#=============================================================================
+# Target rules for targets named doxygen
+
+# Build rule for target.
+doxygen: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 doxygen
+.PHONY : doxygen
+
+# fast build rule for target.
+doxygen/fast:
+	$(MAKE) -f CMakeFiles/doxygen.dir/build.make CMakeFiles/doxygen.dir/build
+.PHONY : doxygen/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_cpp
+
+# Build rule for target.
+roscpp_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_cpp
+.PHONY : roscpp_generate_messages_cpp
+
+# fast build rule for target.
+roscpp_generate_messages_cpp/fast:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_cpp.dir/build.make CMakeFiles/roscpp_generate_messages_cpp.dir/build
+.PHONY : roscpp_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_eus
+
+# Build rule for target.
+roscpp_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_eus
+.PHONY : roscpp_generate_messages_eus
+
+# fast build rule for target.
+roscpp_generate_messages_eus/fast:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_eus.dir/build.make CMakeFiles/roscpp_generate_messages_eus.dir/build
+.PHONY : roscpp_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_lisp
+
+# Build rule for target.
+roscpp_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_lisp
+.PHONY : roscpp_generate_messages_lisp
+
+# fast build rule for target.
+roscpp_generate_messages_lisp/fast:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_lisp.dir/build.make CMakeFiles/roscpp_generate_messages_lisp.dir/build
+.PHONY : roscpp_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named roscpp_generate_messages_py
+
+# Build rule for target.
+roscpp_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_py
+.PHONY : roscpp_generate_messages_py
+
+# fast build rule for target.
+roscpp_generate_messages_py/fast:
+	$(MAKE) -f CMakeFiles/roscpp_generate_messages_py.dir/build.make CMakeFiles/roscpp_generate_messages_py.dir/build
+.PHONY : roscpp_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_cpp
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_cpp
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_eus
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_eus
+.PHONY : rosgraph_msgs_generate_messages_eus
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_eus/fast:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+.PHONY : rosgraph_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_lisp
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_lisp
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_py
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_py
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_py/fast:
+	$(MAKE) -f CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+.PHONY : rosgraph_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named run_tests
+
+# Build rule for target.
+run_tests: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 run_tests
+.PHONY : run_tests
+
+# fast build rule for target.
+run_tests/fast:
+	$(MAKE) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/build
+.PHONY : run_tests/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_cpp
+
+# Build rule for target.
+std_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_cpp
+.PHONY : std_msgs_generate_messages_cpp
+
+# fast build rule for target.
+std_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+.PHONY : std_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_eus
+
+# Build rule for target.
+std_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_eus
+.PHONY : std_msgs_generate_messages_eus
+
+# fast build rule for target.
+std_msgs_generate_messages_eus/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_eus.dir/build.make CMakeFiles/std_msgs_generate_messages_eus.dir/build
+.PHONY : std_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_lisp
+
+# Build rule for target.
+std_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_lisp
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_py
+
+# Build rule for target.
+std_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_py
+.PHONY : std_msgs_generate_messages_py
+
+# fast build rule for target.
+std_msgs_generate_messages_py/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_py.dir/build.make CMakeFiles/std_msgs_generate_messages_py.dir/build
+.PHONY : std_msgs_generate_messages_py/fast
+
+#=============================================================================
 # Target rules for targets named swarm_coordinator
 
 # Build rule for target.
@@ -124,6 +396,45 @@ swarm_coordinator_library/fast:
 	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/build
 .PHONY : swarm_coordinator_library/fast
 
+#=============================================================================
+# Target rules for targets named tests
+
+# Build rule for target.
+tests: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tests
+.PHONY : tests
+
+# fast build rule for target.
+tests/fast:
+	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
+.PHONY : tests/fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main
+
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
+
 Calculation.o: Calculation.cpp.o
 .PHONY : Calculation.o
 
@@ -148,53 +459,53 @@ Calculation.cpp.s:
 	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Calculation.cpp.s
 .PHONY : Calculation.cpp.s
 
-ControllerNode.o: ControllerNode.cpp.o
-.PHONY : ControllerNode.o
+Communication.o: Communication.cpp.o
+.PHONY : Communication.o
 
 # target to build an object file
-ControllerNode.cpp.o:
-	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o
-.PHONY : ControllerNode.cpp.o
+Communication.cpp.o:
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o
+.PHONY : Communication.cpp.o
 
-ControllerNode.i: ControllerNode.cpp.i
-.PHONY : ControllerNode.i
+Communication.i: Communication.cpp.i
+.PHONY : Communication.i
 
 # target to preprocess a source file
-ControllerNode.cpp.i:
-	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.i
-.PHONY : ControllerNode.cpp.i
+Communication.cpp.i:
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.i
+.PHONY : Communication.cpp.i
 
-ControllerNode.s: ControllerNode.cpp.s
-.PHONY : ControllerNode.s
+Communication.s: Communication.cpp.s
+.PHONY : Communication.s
 
 # target to generate assembly for a file
-ControllerNode.cpp.s:
-	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.s
-.PHONY : ControllerNode.cpp.s
+Communication.cpp.s:
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.s
+.PHONY : Communication.cpp.s
 
-FollowerNode.o: FollowerNode.cpp.o
-.PHONY : FollowerNode.o
+DecisionHandler.o: DecisionHandler.cpp.o
+.PHONY : DecisionHandler.o
 
 # target to build an object file
-FollowerNode.cpp.o:
-	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o
-.PHONY : FollowerNode.cpp.o
+DecisionHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o
+.PHONY : DecisionHandler.cpp.o
 
-FollowerNode.i: FollowerNode.cpp.i
-.PHONY : FollowerNode.i
+DecisionHandler.i: DecisionHandler.cpp.i
+.PHONY : DecisionHandler.i
 
 # target to preprocess a source file
-FollowerNode.cpp.i:
-	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.i
-.PHONY : FollowerNode.cpp.i
+DecisionHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.i
+.PHONY : DecisionHandler.cpp.i
 
-FollowerNode.s: FollowerNode.cpp.s
-.PHONY : FollowerNode.s
+DecisionHandler.s: DecisionHandler.cpp.s
+.PHONY : DecisionHandler.s
 
 # target to generate assembly for a file
-FollowerNode.cpp.s:
-	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.s
-.PHONY : FollowerNode.cpp.s
+DecisionHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.s
+.PHONY : DecisionHandler.cpp.s
 
 Main.o: Main.cpp.o
 .PHONY : Main.o
@@ -220,29 +531,53 @@ Main.cpp.s:
 	$(MAKE) -f CMakeFiles/swarm_coordinator.dir/build.make CMakeFiles/swarm_coordinator.dir/Main.cpp.s
 .PHONY : Main.cpp.s
 
-Movement.o: Movement.cpp.o
-.PHONY : Movement.o
+Parse.o: Parse.cpp.o
+.PHONY : Parse.o
 
 # target to build an object file
-Movement.cpp.o:
-	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o
-.PHONY : Movement.cpp.o
+Parse.cpp.o:
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o
+.PHONY : Parse.cpp.o
 
-Movement.i: Movement.cpp.i
-.PHONY : Movement.i
+Parse.i: Parse.cpp.i
+.PHONY : Parse.i
 
 # target to preprocess a source file
-Movement.cpp.i:
-	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.i
-.PHONY : Movement.cpp.i
+Parse.cpp.i:
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.i
+.PHONY : Parse.cpp.i
 
-Movement.s: Movement.cpp.s
-.PHONY : Movement.s
+Parse.s: Parse.cpp.s
+.PHONY : Parse.s
 
 # target to generate assembly for a file
-Movement.cpp.s:
-	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.s
-.PHONY : Movement.cpp.s
+Parse.cpp.s:
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.s
+.PHONY : Parse.cpp.s
+
+Threading.o: Threading.cpp.o
+.PHONY : Threading.o
+
+# target to build an object file
+Threading.cpp.o:
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o
+.PHONY : Threading.cpp.o
+
+Threading.i: Threading.cpp.i
+.PHONY : Threading.i
+
+# target to preprocess a source file
+Threading.cpp.i:
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.i
+.PHONY : Threading.cpp.i
+
+Threading.s: Threading.cpp.s
+.PHONY : Threading.s
+
+# target to generate assembly for a file
+Threading.cpp.s:
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.s
+.PHONY : Threading.cpp.s
 
 # Help Target
 help:
@@ -250,25 +585,53 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... clean_test_results"
+	@echo "... clean_test_results_swarm_coordinator"
+	@echo "... download_extra_data"
+	@echo "... doxygen"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... roscpp_generate_messages_cpp"
+	@echo "... roscpp_generate_messages_eus"
+	@echo "... roscpp_generate_messages_lisp"
+	@echo "... roscpp_generate_messages_py"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... run_tests"
+	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... std_msgs_generate_messages_eus"
+	@echo "... std_msgs_generate_messages_lisp"
+	@echo "... std_msgs_generate_messages_py"
 	@echo "... swarm_coordinator"
 	@echo "... swarm_coordinator_library"
+	@echo "... test"
+	@echo "... tests"
+	@echo "... gtest"
+	@echo "... gtest_main"
 	@echo "... Calculation.o"
 	@echo "... Calculation.i"
 	@echo "... Calculation.s"
-	@echo "... ControllerNode.o"
-	@echo "... ControllerNode.i"
-	@echo "... ControllerNode.s"
-	@echo "... FollowerNode.o"
-	@echo "... FollowerNode.i"
-	@echo "... FollowerNode.s"
+	@echo "... Communication.o"
+	@echo "... Communication.i"
+	@echo "... Communication.s"
+	@echo "... DecisionHandler.o"
+	@echo "... DecisionHandler.i"
+	@echo "... DecisionHandler.s"
 	@echo "... Main.o"
 	@echo "... Main.i"
 	@echo "... Main.s"
-	@echo "... Movement.o"
-	@echo "... Movement.i"
-	@echo "... Movement.s"
+	@echo "... Parse.o"
+	@echo "... Parse.i"
+	@echo "... Parse.s"
+	@echo "... Threading.o"
+	@echo "... Threading.i"
+	@echo "... Threading.s"
 .PHONY : help
 
 

@@ -72,103 +72,128 @@ CMakeFiles/swarm_coordinator_library.dir/Calculation.cpp.o.provides: CMakeFiles/
 
 CMakeFiles/swarm_coordinator_library.dir/Calculation.cpp.o.provides.build: CMakeFiles/swarm_coordinator_library.dir/Calculation.cpp.o
 
-CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o: CMakeFiles/swarm_coordinator_library.dir/flags.make
-CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o: /home/steven/swarm_master/src/ControllerNode.cpp
+CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o: CMakeFiles/swarm_coordinator_library.dir/flags.make
+CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o: /home/steven/swarm_master/src/Communication.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/steven/swarm_master/build/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o -c /home/steven/swarm_master/src/ControllerNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o -c /home/steven/swarm_master/src/Communication.cpp
 
-CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/steven/swarm_master/src/ControllerNode.cpp > CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.i
+CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/steven/swarm_master/src/Communication.cpp > CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.i
 
-CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/steven/swarm_master/src/ControllerNode.cpp -o CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.s
+CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/steven/swarm_master/src/Communication.cpp -o CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.s
 
-CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o.requires:
-.PHONY : CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o.requires
+CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o.requires:
+.PHONY : CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o.requires
 
-CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o.provides: CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o.requires
-	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o.provides.build
-.PHONY : CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o.provides
+CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o.provides: CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o.requires
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o.provides.build
+.PHONY : CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o.provides
 
-CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o.provides.build: CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o
+CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o.provides.build: CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o
 
-CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o: CMakeFiles/swarm_coordinator_library.dir/flags.make
-CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o: /home/steven/swarm_master/src/FollowerNode.cpp
+CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o: CMakeFiles/swarm_coordinator_library.dir/flags.make
+CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o: /home/steven/swarm_master/src/DecisionHandler.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/steven/swarm_master/build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o -c /home/steven/swarm_master/src/FollowerNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o -c /home/steven/swarm_master/src/DecisionHandler.cpp
 
-CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/steven/swarm_master/src/FollowerNode.cpp > CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.i
+CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/steven/swarm_master/src/DecisionHandler.cpp > CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.i
 
-CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/steven/swarm_master/src/FollowerNode.cpp -o CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.s
+CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/steven/swarm_master/src/DecisionHandler.cpp -o CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.s
 
-CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o.requires:
-.PHONY : CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o.requires
+CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o.requires:
+.PHONY : CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o.requires
 
-CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o.provides: CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o.requires
-	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o.provides.build
-.PHONY : CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o.provides
+CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o.provides: CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o.requires
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o.provides.build
+.PHONY : CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o.provides
 
-CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o.provides.build: CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o
+CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o.provides.build: CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o
 
-CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o: CMakeFiles/swarm_coordinator_library.dir/flags.make
-CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o: /home/steven/swarm_master/src/Movement.cpp
+CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o: CMakeFiles/swarm_coordinator_library.dir/flags.make
+CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o: /home/steven/swarm_master/src/Parse.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/steven/swarm_master/build/CMakeFiles $(CMAKE_PROGRESS_4)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o -c /home/steven/swarm_master/src/Movement.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o -c /home/steven/swarm_master/src/Parse.cpp
 
-CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/steven/swarm_master/src/Movement.cpp > CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.i
+CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/steven/swarm_master/src/Parse.cpp > CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.i
 
-CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/steven/swarm_master/src/Movement.cpp -o CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.s
+CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/steven/swarm_master/src/Parse.cpp -o CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.s
 
-CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o.requires:
-.PHONY : CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o.requires
+CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o.requires:
+.PHONY : CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o.requires
 
-CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o.provides: CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o.requires
-	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o.provides.build
-.PHONY : CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o.provides
+CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o.provides: CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o.requires
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o.provides.build
+.PHONY : CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o.provides
 
-CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o.provides.build: CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o
+CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o.provides.build: CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o
+
+CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o: CMakeFiles/swarm_coordinator_library.dir/flags.make
+CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o: /home/steven/swarm_master/src/Threading.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/steven/swarm_master/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o -c /home/steven/swarm_master/src/Threading.cpp
+
+CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/steven/swarm_master/src/Threading.cpp > CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.i
+
+CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/steven/swarm_master/src/Threading.cpp -o CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.s
+
+CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o.requires:
+.PHONY : CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o.requires
+
+CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o.provides: CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o.requires
+	$(MAKE) -f CMakeFiles/swarm_coordinator_library.dir/build.make CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o.provides.build
+.PHONY : CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o.provides
+
+CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o.provides.build: CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o
 
 # Object files for target swarm_coordinator_library
 swarm_coordinator_library_OBJECTS = \
 "CMakeFiles/swarm_coordinator_library.dir/Calculation.cpp.o" \
-"CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o" \
-"CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o" \
-"CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o"
+"CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o" \
+"CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o" \
+"CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o" \
+"CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o"
 
 # External object files for target swarm_coordinator_library
 swarm_coordinator_library_EXTERNAL_OBJECTS =
 
-libswarm_coordinator_library.a: CMakeFiles/swarm_coordinator_library.dir/Calculation.cpp.o
-libswarm_coordinator_library.a: CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o
-libswarm_coordinator_library.a: CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o
-libswarm_coordinator_library.a: CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o
-libswarm_coordinator_library.a: CMakeFiles/swarm_coordinator_library.dir/build.make
-libswarm_coordinator_library.a: CMakeFiles/swarm_coordinator_library.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX static library libswarm_coordinator_library.a"
-	$(CMAKE_COMMAND) -P CMakeFiles/swarm_coordinator_library.dir/cmake_clean_target.cmake
+libswarm_coordinator_library.so: CMakeFiles/swarm_coordinator_library.dir/Calculation.cpp.o
+libswarm_coordinator_library.so: CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o
+libswarm_coordinator_library.so: CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o
+libswarm_coordinator_library.so: CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o
+libswarm_coordinator_library.so: CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o
+libswarm_coordinator_library.so: CMakeFiles/swarm_coordinator_library.dir/build.make
+libswarm_coordinator_library.so: CMakeFiles/swarm_coordinator_library.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library libswarm_coordinator_library.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/swarm_coordinator_library.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/swarm_coordinator_library.dir/build: libswarm_coordinator_library.a
+CMakeFiles/swarm_coordinator_library.dir/build: libswarm_coordinator_library.so
 .PHONY : CMakeFiles/swarm_coordinator_library.dir/build
 
 CMakeFiles/swarm_coordinator_library.dir/requires: CMakeFiles/swarm_coordinator_library.dir/Calculation.cpp.o.requires
-CMakeFiles/swarm_coordinator_library.dir/requires: CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o.requires
-CMakeFiles/swarm_coordinator_library.dir/requires: CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o.requires
-CMakeFiles/swarm_coordinator_library.dir/requires: CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o.requires
+CMakeFiles/swarm_coordinator_library.dir/requires: CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o.requires
+CMakeFiles/swarm_coordinator_library.dir/requires: CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o.requires
+CMakeFiles/swarm_coordinator_library.dir/requires: CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o.requires
+CMakeFiles/swarm_coordinator_library.dir/requires: CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o.requires
 .PHONY : CMakeFiles/swarm_coordinator_library.dir/requires
 
 CMakeFiles/swarm_coordinator_library.dir/clean:

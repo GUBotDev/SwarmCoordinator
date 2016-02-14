@@ -1,2 +1,1 @@
-/usr/bin/ar cr libswarm_coordinator_library.a  CMakeFiles/swarm_coordinator_library.dir/Calculation.cpp.o CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o
-/usr/bin/ranlib libswarm_coordinator_library.a
+/usr/bin/c++  -fPIC  -std=c++11 -pthread   -shared -Wl,-soname,libswarm_coordinator_library.so -o libswarm_coordinator_library.so CMakeFiles/swarm_coordinator_library.dir/Calculation.cpp.o CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o CMakeFiles/swarm_coordinator_library.dir/DecisionHandler.cpp.o CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o 

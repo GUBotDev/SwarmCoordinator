@@ -81,7 +81,24 @@ swarm_coordinator_EXTERNAL_OBJECTS =
 
 swarm_coordinator: CMakeFiles/swarm_coordinator.dir/Main.cpp.o
 swarm_coordinator: CMakeFiles/swarm_coordinator.dir/build.make
-swarm_coordinator: libswarm_coordinator_library.a
+swarm_coordinator: libswarm_coordinator_library.so
+swarm_coordinator: /opt/ros/jade/lib/libroscpp.so
+swarm_coordinator: /usr/lib/x86_64-linux-gnu/libboost_signals.so
+swarm_coordinator: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+swarm_coordinator: /opt/ros/jade/lib/librosconsole.so
+swarm_coordinator: /opt/ros/jade/lib/librosconsole_log4cxx.so
+swarm_coordinator: /opt/ros/jade/lib/librosconsole_backend_interface.so
+swarm_coordinator: /usr/lib/liblog4cxx.so
+swarm_coordinator: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+swarm_coordinator: /opt/ros/jade/lib/libroscpp_serialization.so
+swarm_coordinator: /opt/ros/jade/lib/librostime.so
+swarm_coordinator: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+swarm_coordinator: /opt/ros/jade/lib/libxmlrpcpp.so
+swarm_coordinator: /opt/ros/jade/lib/libcpp_common.so
+swarm_coordinator: /usr/lib/x86_64-linux-gnu/libboost_system.so
+swarm_coordinator: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+swarm_coordinator: /usr/lib/x86_64-linux-gnu/libpthread.so
+swarm_coordinator: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 swarm_coordinator: CMakeFiles/swarm_coordinator.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable swarm_coordinator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/swarm_coordinator.dir/link.txt --verbose=$(VERBOSE)
