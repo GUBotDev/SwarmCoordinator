@@ -7,6 +7,8 @@ CMakeFiles/swarm_coordinator_library.dir/Calculation.cpp.o
 CMakeFiles/swarm_coordinator_library.dir/Communication.cpp.o
  /home/steven/swarm_master/src/Communication.cpp
  /home/steven/swarm_master/src/Communication.h
+ /home/steven/swarm_master/src/DecisionHandler.h
+ /home/steven/swarm_master/src/Parse.h
  /opt/ros/jade/include/XmlRpcDecl.h
  /opt/ros/jade/include/XmlRpcValue.h
  /opt/ros/jade/include/ros/advertise_options.h
@@ -73,6 +75,7 @@ CMakeFiles/swarm_coordinator_library.dir/Parse.cpp.o
 CMakeFiles/swarm_coordinator_library.dir/Threading.cpp.o
  /home/steven/swarm_master/src/Calculation.h
  /home/steven/swarm_master/src/Communication.h
+ /home/steven/swarm_master/src/DecisionHandler.h
  /home/steven/swarm_master/src/Parse.h
  /home/steven/swarm_master/src/Threading.cpp
  /home/steven/swarm_master/src/Threading.h

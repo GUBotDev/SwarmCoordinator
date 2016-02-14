@@ -3,6 +3,7 @@
 
 CMakeFiles/swarm_coordinator.dir/Main.cpp.o: /home/steven/swarm_master/src/Calculation.h
 CMakeFiles/swarm_coordinator.dir/Main.cpp.o: /home/steven/swarm_master/src/Communication.h
+CMakeFiles/swarm_coordinator.dir/Main.cpp.o: /home/steven/swarm_master/src/DecisionHandler.h
 CMakeFiles/swarm_coordinator.dir/Main.cpp.o: /home/steven/swarm_master/src/Main.cpp
 CMakeFiles/swarm_coordinator.dir/Main.cpp.o: /home/steven/swarm_master/src/Parse.h
 CMakeFiles/swarm_coordinator.dir/Main.cpp.o: /home/steven/swarm_master/src/Threading.h

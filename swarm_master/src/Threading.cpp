@@ -6,6 +6,8 @@ void Threading::readThread() {
 	while(true){
 		try {
 			rosComm.read();
+			
+			//break;
 		}
 		catch (std::exception ex) {
 			std::cout << "read thread error" << std::endl;
