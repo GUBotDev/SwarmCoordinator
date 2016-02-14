@@ -2,16 +2,81 @@
 #include "stdio.h"
 
 int main(void){
-    unsigned int val = 10;
-    mmapGpio rpiGpio; // instantiate an instance of the mmapGpio class
-    rpiGpio.setPinDir(4,mmapGpio::OUTPUT); // set GPIO4 to output
+	unsigned int val = 10;
+	mmapGpio rpiGpio;
+	rpiGpio.setPinDir(4, mmapGpio::OUTPUT);
 
-    while(true){
-	    rpiGpio.writePinHigh(4); // write GPIO4 pin high
-	    usleep(500000);
-	    rpiGpio.writePinLow(4); // write GPIO4 pin low
-	    usleep(500000);
-    }
+	int step = 0;
+	bool forward = true;
+
+	while(true){
+
+		switch (step){
+			case 0:
+				rpiGpio.writePinLow(0);
+				rpiGpio.writePinLow(1);
+				rpiGpio.writePinLow(2);
+				rpiGpio.writePinHigh(3);
+				break;
+			case 1:
+				rpiGpio.writePinLow(0);
+				rpiGpio.writePinLow(1);
+				rpiGpio.writePinHigh(2);
+				rpiGpio.writePinHigh(3);
+				break;
+			case 2:
+				rpiGpio.writePinLow(0);
+				rpiGpio.writePinLow(1);
+				rpiGpio.writePinHigh(2);
+				rpiGpio.writePinLow(3);
+				break;
+			case 3:
+				rpiGpio.writePinLow(0);
+				rpiGpio.writePinHigh(1);
+				rpiGpio.writePinHigh(2);
+				rpiGpio.writePinLow(3);
+				break;
+			case 4:
+				rpiGpio.writePinLow(0);
+				rpiGpio.writePinHigh(1);
+				rpiGpio.writePinLow(2);
+				rpiGpio.writePinLow(3);
+				break;
+			case 5:
+				rpiGpio.writePinHigh(0);
+				rpiGpio.writePinHigh(1);
+				rpiGpio.writePinLow(2);
+				rpiGpio.writePinLow(3);
+				break;
+			case 6:
+				rpiGpio.writePinHigh(0);
+				rpiGpio.writePinLow(1);
+				rpiGpio.writePinLow(2);
+				rpiGpio.writePinLow(3);
+				break;
+			case 7:
+				rpiGpio.writePinHigh(0);
+				rpiGpio.writePinLow(1);
+				rpiGpio.writePinLow(2);
+				rpiGpio.writePinHigh(3);
+				break;
+		}
+
+		if (forward){
+			step++;
+		}
+		else{
+			step--;
+		}
+		
+		if (step > 7){
+			step = 0;
+		}
+		else if (step < 0){
+			step = 7;
+		}
+
+	}
 
 	return 0;
 }
