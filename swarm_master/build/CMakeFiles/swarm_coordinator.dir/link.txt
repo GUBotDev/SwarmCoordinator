@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/swarm_coordinator.dir/Main.cpp.o  -o swarm_coordinator -rdynamic libswarm_coordinator_library.a 

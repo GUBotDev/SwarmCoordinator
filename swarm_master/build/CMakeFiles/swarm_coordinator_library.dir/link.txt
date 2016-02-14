@@ -1,0 +1,2 @@
+/usr/bin/ar cr libswarm_coordinator_library.a  CMakeFiles/swarm_coordinator_library.dir/Calculation.cpp.o CMakeFiles/swarm_coordinator_library.dir/ControllerNode.cpp.o CMakeFiles/swarm_coordinator_library.dir/FollowerNode.cpp.o CMakeFiles/swarm_coordinator_library.dir/Movement.cpp.o
+/usr/bin/ranlib libswarm_coordinator_library.a
