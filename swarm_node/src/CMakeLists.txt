@@ -14,6 +14,12 @@ set(swarm_coord_lib_source
 	Communication.h
 	DecisionHandler.cpp
 	DecisionHandler.h
+	Hardware.cpp
+	Hardware.h
+	mmapGpio.cpp
+	mmapGpio.h
+	Node.cpp
+	Node.h
 	Parse.cpp
 	Parse.h
 	Threading.cpp

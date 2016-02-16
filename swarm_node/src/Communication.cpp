@@ -1,7 +1,7 @@
 #include "Communication.h"
 
-Parse Communication::parseObj;
-DecisionHandler Communication::decHand;
+//Parse Communication::parseObj;
+//DecisionHandler Communication::decHand;
 
 void Communication::readerCallback(const std_msgs::String::ConstPtr& msg){
 	//ROS_INFO("input: [%s]", msg->data.c_str());

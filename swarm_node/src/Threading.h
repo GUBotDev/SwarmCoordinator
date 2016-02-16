@@ -11,5 +11,5 @@ class Threading {
 public:
 	void readThread();
 private:
-	
+	//static Communication rosComm;
 };

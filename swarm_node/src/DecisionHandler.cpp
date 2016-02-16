@@ -2,10 +2,10 @@
 
 void DecisionHandler::decide(float x, float y, float targetDirection, float* xBeacons, float* yBeacons, std::string* beaconID, int numBeacons, bool isInFormation){
 	const int amount = numBeacons;
-	float[amount] radii;
+	float radii[amount];
 	
-	radii[1] = ;
-	radii[2] = ;
+	radii[1];
+	radii[2];
 	
 	for (int i = 0; i < amount; i++){
 		radii[i] = node.hardware.readBeacons(beaconID[i]);
@@ -14,8 +14,8 @@ void DecisionHandler::decide(float x, float y, float targetDirection, float* xBe
 	//check tolerance of positioning and angle
 	std::pair<float, float> temp = calculate.multilateration(radii, xBeacons, yBeacons, numBeacons);
 	
-	node.xPos = temp[0];
-	node.yPos = temp[1];
+	node.xPos = temp.first;
+	node.yPos = temp.second;
 	
 	float tempX = abs(x - node.xPos);
 	float tempY = abs(y - node.yPos);

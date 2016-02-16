@@ -32,7 +32,7 @@ void Node::locateBeacons(int beacon){
 		case 1:
 			locateTwo();
 			break;
-		case 2;
+		case 2:
 			locateThree();
 			break;
 	}
@@ -74,7 +74,7 @@ void Node::fullScan(){
 	}
 }
 
-std::pair<bool, float> forwardScan(float angle){
+std::pair<bool, float> Node::forwardScan(float angle){
 	float* withinTolerance;
 	int numWithinTol = 0;
 
@@ -109,7 +109,7 @@ void Node::locateOne(){//check if area is open
 	
 	tempPair = hardware.moveForward(checkY);//check
 	
-	if (pair.first == true){
+	if (tempPair.first == true){
 		yAxis = checkY - tempPair.second;
 	}
 	
@@ -117,13 +117,13 @@ void Node::locateOne(){//check if area is open
 	hardware.turn(-90);
 	tempPair = hardware.moveForward(checkXLeft);//check
 	
-	if (pair.first == true){
+	if (tempPair.first == true){
 		xAxisLeft = checkXLeft - tempPair.second;
 	}
 	
 	tempPair = hardware.moveBackward(xAxisLeft + checkXRight);//check
 	
-	if (pair.first == true){
+	if (tempPair.first == true){
 		xAxisRight = checkXRight - tempPair.second;
 	}
 	
@@ -131,7 +131,7 @@ void Node::locateOne(){//check if area is open
 	hardware.turn(90);
 	tempPair = hardware.moveForward(yAxis / 4);
 	
-	comm.write("");//node name
+	//Communication::write("");//node name
 }
 
 void Node::locateTwo(){

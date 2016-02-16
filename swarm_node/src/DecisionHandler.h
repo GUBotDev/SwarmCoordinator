@@ -6,7 +6,7 @@
 
 class DecisionHandler {
 public:
-	void decide(float x, float y, float targetDirection);
+	void decide(float x, float y, float targetDirection, float* xBeacons, float* yBeacons, std::string* beaconID, int numBeacons, bool isInFormation);
 private:
 	Node node;
 	Calculation calculate;

@@ -9,6 +9,7 @@ int main(int argc, char **argv) {
 	//creates read thread
 	std::thread read(&Threading::readThread, Threading());
 	
+	
 	Communication rosComm;
 	
 	while(true){
@@ -17,6 +18,7 @@ int main(int argc, char **argv) {
 		rosComm.write("0.3 23.5 130.3 253 Node_123456789");
 		rosComm.write("-26.3 34.5 60.2 0 Node_234567890");
 	}
+	
 	
 	read.join();
 

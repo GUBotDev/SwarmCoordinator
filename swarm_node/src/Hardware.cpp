@@ -72,9 +72,9 @@ void Hardware::turn(float angle){
 		int temp = steps;
 		
 		for (int i = 0; i < steps; i++){
-			step = steps % 8;
+			stepAmount = steps % 8;
 
-			switch (step){
+			switch (stepAmount){
 				case 0:
 					gpio.writePinLow(0);
 					gpio.writePinLow(1);
@@ -125,10 +125,10 @@ void Hardware::turn(float angle){
 					break;
 			}
 			
-			step = temp % 8;
+			stepAmount = temp % 8;
 			temp--;
 			
-			switch (step){
+			switch (stepAmount){
 				case 0:
 					gpio.writePinLow(4);
 					gpio.writePinLow(5);
@@ -183,12 +183,12 @@ void Hardware::turn(float angle){
 	else{
 		steps *= -1;
 		
-		temp = 0;
+		int temp = 0;
 		
 		for (int i = steps; i > 0; i--){
-			step = steps % 8;
+			stepAmount = steps % 8;
 
-			switch (step){
+			switch (stepAmount){
 				case 0:
 					gpio.writePinLow(0);
 					gpio.writePinLow(1);
@@ -239,10 +239,10 @@ void Hardware::turn(float angle){
 					break;
 			}
 			
-			step = temp % 8;
+			stepAmount = temp % 8;
 			temp++;
 			
-			switch (step){
+			switch (stepAmount){
 				case 0:
 					gpio.writePinLow(4);
 					gpio.writePinLow(5);
@@ -311,7 +311,7 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 	//isMvForward steps -> 0,1,2,3,4,5 else 5,4,3,2,1,0
 	if (isMvForward){
 		for (int i = 0; i < steps; i++){
-			step = steps % 8;
+			stepAmount = steps % 8;
 			
 			ultraDist = readUltrasonic(isMvForward);
 			
@@ -320,7 +320,7 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 			tempBoolSteps.second = 0;
 				
 			if (ultraDist < objDisTolerance){
-				switch (step){
+				switch (stepAmount){
 					case 0:
 						gpio.writePinLow(0);
 						gpio.writePinLow(1);
@@ -418,11 +418,11 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 			}
 		}
 		
-		return tempBool;
+		return tempBoolSteps;
 	}
 	else{
 		for (int i = steps; i > 0; i--){
-			step = steps % 8;
+			stepAmount = steps % 8;
 
 			ultraDist = readUltrasonic(isMvForward);
 			
@@ -431,7 +431,7 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 			tempBoolSteps.second = 0;
 				
 			if (ultraDist < objDisTolerance){
-				switch (step){
+				switch (stepAmount){
 					case 0:
 						gpio.writePinLow(0);
 						gpio.writePinLow(1);
@@ -530,16 +530,16 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 			}
 		}
 		
-		return tempBool;
+		return tempBoolSteps;
 	}
 }
 
 
-float* Hardware::readBeacons(std::string name){//return beacon radii
+float Hardware::readBeacons(std::string name){//return beacon radii
 
 }
 
-float Hardware::readUltrasonic(){//return distance in meters
+float Hardware::readUltrasonic(bool isUlForward){//return distance in meters
 
 }
 

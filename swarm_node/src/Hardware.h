@@ -6,7 +6,7 @@
 #include "mmapGpio.h"
 #include "stdio.h"
 
-class Movement {
+class Hardware {
 public:
 	void turn(float targetDirection);
 	std::pair<bool, float> moveForward(float meters);
@@ -15,22 +15,22 @@ public:
 	float readUltrasonic(bool isUlForward);//returns distance in front of node
 	float readCompass();
 	float readGravityVector();
+	const float objDisTolerance = 0.2;//meters 
+	mmapGpio gpio;
 private:
 	std::pair<bool, float> step(int steps, bool isMvForward);
 	std::pair<bool, float> foundObject;
 	const float pi = 3.141592653;
 	const float stepAngle = 5.889;//required
-	const float wheelRadius;//required
-	const float robotRadius;//required
-	const float objDisTolerance = 0.2;//meters 
+	const float wheelRadius = 0.04075;//required
+	const float robotRadius = 0.0825;//required
 	float wheelCirc;
 	float robotCirc;
 	float degrees;
-	float steps;
-	float step;
 	float targetDirection;
 	float currentDirection;
 	float ultraDist;
 	bool isMvForward;
-	mmapGpio gpio;
+	int stepAmount;
+	int steps;
 };
