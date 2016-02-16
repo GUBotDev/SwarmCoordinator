@@ -11,7 +11,7 @@ public:
 	void turn(float targetDirection);
 	std::pair<bool, float> moveForward(float meters);
 	std::pair<bool, float> moveBackward(float meters);
-	float* readBeacons(std::string name);//return radius
+	float readBeacons(std::string name);//return radius
 	float readUltrasonic(bool isUlForward);//returns distance in front of node
 	float readCompass();
 	float readGravityVector();

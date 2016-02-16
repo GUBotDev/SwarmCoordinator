@@ -46,6 +46,14 @@ void Parse::parseData(std::string data){
 			decHand.decide(x, y, targetDirection);
 		}
 		
+		int decision = decHand.decide();
+		
+		//if node one, if position, if direction, 
+		switch (decision){
+			case 0:
+				
+				break;
+		}
 	}
 	catch (std::ExceptionName ex){
 		std::cout << "Parse error" << std::endl;

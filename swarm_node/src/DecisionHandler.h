@@ -10,8 +10,8 @@ public:
 private:
 	Node node;
 	Calculation calculate;
-	float directionTolerance = 0.25;//+/- meters
-	float angleTolerance = 10;//+/-degrees
+	const float positionTolerance = 0.25;//+/- meters
+	const float angleTolerance = 10;//+/-degrees
 	int numOfBeacons;
 	int numOfRobots;
 };

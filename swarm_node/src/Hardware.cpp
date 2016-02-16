@@ -12,6 +12,12 @@ std::pair<bool, float> Hardware::moveForward(float meters){
 	//distance left in steps: foundObject.second else false
 	foundObject = step(steps, true);
 	
+	if (foundObject.first == true){
+		float tempMeters = 1 / ((foundObject.second * stepAngle) / 360);
+		
+		foundObject.second = tempMeters;
+	}
+	
 	return foundObject;
 }
 
@@ -26,11 +32,30 @@ std::pair<bool, float> Hardware::moveBackward(float meters){
 	//distance left in steps: foundObject.second else false
 	foundObject = step(steps, false);
 	
+	if (foundObject.first == true){
+		float tempMeters = 1 / ((foundObject.second * stepAngle) / 360);
+		
+		foundObject.second = tempMeters;
+	}
+	
 	return foundObject;
 }
 
-void Hardware::turn(float targetDirection, float currentDirection){
-	degrees = (robotCirc / wheelCirc) * (currentDirection - targetDirection);
+void Hardware::turn(float angle){
+	//currentDirection = 
+
+	targetDirection = angle + currentDirection;
+	degrees = (robotCirc / wheelCirc) * (targetDirection - currentDirection);
+	
+	//shortest turning angle
+	if (abs(degrees) > 180){
+		if (degrees < 0){
+			degrees += 360;
+		}
+		else{
+			degrees -= 360;
+		}
+	}
 	
 	steps = degrees / stepAngle;
 	

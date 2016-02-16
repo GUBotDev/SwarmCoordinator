@@ -1,18 +1,32 @@
 #include "DecisionHandler.h"
 
-void DecisionHandler::decide(float x, float y, float targetDirection, float* xBeacons, float* yBeacons, float* beaconID, int numBeacons){
+void DecisionHandler::decide(float x, float y, float targetDirection, float* xBeacons, float* yBeacons, std::string* beaconID, int numBeacons, bool isInFormation){
 	const int amount = numBeacons;
-	float[amount] radius;
+	float[amount] radii;
 	
-	radius[0] = ;//use beaconid to associate beacon with position
-	radius[1] = ;
-	radius[2] = ;
+	radii[1] = ;
+	radii[2] = ;
+	
+	for (int i = 0; i < amount; i++){
+		radii[i] = node.hardware.readBeacons(beaconID[i]);
+	}
 	
 	//check tolerance of positioning and angle
-	std::pair<float, float> temp = calculate.multilateration(radius, );
+	std::pair<float, float> temp = calculate.multilateration(radii, xBeacons, yBeacons, numBeacons);
 	
 	node.xPos = temp[0];
 	node.yPos = temp[1];
 	
-	float tempX = x - 
+	float tempX = abs(x - node.xPos);
+	float tempY = abs(y - node.yPos);
+	
+	if (tempX > positionTolerance || tempY > positionTolerance){
+		//shift position
+		
+	}
+	
+	if (node.hardware.readCompass() > (targetDirection + angleTolerance) || node.hardware.readCompass() < (targetDirection - angleTolerance)){
+		//shift angle
+		
+	}
 }

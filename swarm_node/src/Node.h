@@ -2,7 +2,9 @@
 
 #include <cmath>
 #include <string>
-#include "Movement.h"
+#include <iostream>
+#include "Hardware.h"
+#include "Communication.h"
 #include "mmapGpio.h"
 #include "stdio.h"
 
@@ -11,6 +13,7 @@ public:
 	void moveToPosition(float x, float y);
 	void locateBeacons();
 	void fullScan();
+	std::pair<bool, float> forwardScan(float angle);
 	void locateOne();
 	void locateTwo();
 	void locateThree();
@@ -29,6 +32,11 @@ private:
 	const float length = 0.25;//meters
 	const float width = 0.25;//meters
 	const float speed = 80;//mm per second
+	const float formDis = 1;//meters
+	const float checkY = 5;//meters
+	const float checkXLeft = 2.5;
+	const float checkXRight = 2.5;
 	bool isBusy = false;
-	Movement moveNode;
+	Hardware hardware;
+	Communication comm;
 };
