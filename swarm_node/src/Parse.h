@@ -11,7 +11,6 @@ class Parse {
 public:
 	std::vector<std::string> split(const std::string &s, char delim, std::vector<std::string> &elems);
 	void parseData(std::string);
-	DecisionHandler decHand;
 private:
 	float x;
 	float y;
@@ -20,4 +19,5 @@ private:
 	float ultrasonic;
 	int nodeNum;
 	std::string name;
+	static DecisionHandler decHand;
 };

@@ -4,7 +4,8 @@
 #include <string>
 #include <iostream>
 #include "Hardware.h"
-//#include "Communication.h"
+#include "Write.h"
+#include "ros/ros.h"
 #include "mmapGpio.h"
 #include "stdio.h"
 
@@ -12,24 +13,15 @@ class Node {
 public:
 	void moveToPosition(float x, float y);
 	void locateBeacons(int beacon);
-	void fullScan();
-	std::pair<bool, float> forwardScan(float angle);
+	void turnTo(float targetDirection);
 	void locateOne();
 	void locateTwo();
 	void locateThree();
-	float xPos;
-	float yPos;
-	Hardware hardware;
+	void busy(bool);
 private:
 	const bool hasBeacon = true;//report relatively static xy position to master
-	const int turnIncrement = 5;//degrees
 	int beaconNum;//the number assigned by the master if the node has a beacon
 	std::pair<bool, float> wasObjectFound;
-	float direction;
-	float newY;
-	float newX;
-	float angle;
-	float distance;
 	const float length = 0.25;//meters
 	const float width = 0.25;//meters
 	const float speed = 80;//mm per second
@@ -37,5 +29,15 @@ private:
 	const float checkY = 5;//meters
 	const float checkXLeft = 2.5;
 	const float checkXRight = 2.5;
-	bool isBusy = false;
+	static Hardware hardware;
+	static Write writer;
+	float targetDirection;
+	float currentDirection;
+	float direction;
+	float distance;
+	float newY;
+	float newX;
+	float angle;
+	float xPos;
+	float yPos;
 };

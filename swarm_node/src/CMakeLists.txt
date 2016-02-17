@@ -10,8 +10,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
 set(swarm_coord_lib_source
 	Calculation.cpp
 	Calculation.h
-	Communication.cpp
-	Communication.h
 	DecisionHandler.cpp
 	DecisionHandler.h
 	Hardware.cpp
@@ -22,8 +20,12 @@ set(swarm_coord_lib_source
 	Node.h
 	Parse.cpp
 	Parse.h
+	Read.cpp
+	Read.h
 	Threading.cpp
 	Threading.h
+	Write.cpp
+	Write.h
 )
 
 include_directories(

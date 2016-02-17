@@ -1,7 +1,11 @@
 #include "Node.h"
 
+Hardware Node::hardware;
+Write Node::writer;
+
 void Node::moveToPosition(float x, float y) {// moves single robot
-	isBusy = true;
+	busy(true);
+	
 	newX = x - xPos;
 	newY = y - yPos;
 	angle = atan2(newY, newX);
@@ -13,17 +17,14 @@ void Node::moveToPosition(float x, float y) {// moves single robot
 	wasObjectFound = hardware.moveForward(distance);
 	
 	if (wasObjectFound.first == true){
-		
-	}
-	else{
-		
+		//FORMATION SHIFT COURSE - send command to master to stop and redirect
 	}
 	
-	isBusy = false;
+	busy(false);
 }
 
 void Node::locateBeacons(int beacon){
-	isBusy = true;
+	busy(true);
 	
 	switch (beacon){
 		case 0:
@@ -37,70 +38,15 @@ void Node::locateBeacons(int beacon){
 			break;
 	}
 	
-	isBusy = false;
+	busy(false);
 }
 
-void Node::fullScan(){
-	float* withinTolerance;
-	int numWithinTol = 0;
-
-	for (int i = 0; i < 180 / turnIncrement; i += turnIncrement){
-		hardware.turn(i);
-		
-		float tempFront = hardware.readUltrasonic(true);
-		float tempBack = hardware.readUltrasonic(false);
-		
-		if (tempFront < hardware.objDisTolerance){
-			withinTolerance[numWithinTol] = i;
-			numWithinTol++;
-		}
-		
-		if (tempBack < hardware.objDisTolerance){
-			withinTolerance[numWithinTol] = i + 180;
-			numWithinTol++;
-		}
-	}
+void Node::turnTo(float targetDirection){
+	currentDirection = hardware.readCompass();
 	
-	hardware.turn(180);
+	angle = targetDirection - currentDirection;
 	
-	if (numWithinTol > 0){
-		std::cout << "Objects found: " << numWithinTol << std::endl << "Objects located at: ";
-	
-		for (int i = 0; i < numWithinTol; i++){
-			std::cout << withinTolerance[i];
-		}
-		
-		std::cout << std::endl;
-	}
-}
-
-std::pair<bool, float> Node::forwardScan(float angle){
-	float* withinTolerance;
-	int numWithinTol = 0;
-
-	for (int i = -15; i < 15 / turnIncrement; i += turnIncrement){
-		hardware.turn(i);
-		
-		float tempFront = hardware.readUltrasonic(true);
-		
-		if (tempFront < hardware.objDisTolerance){
-			withinTolerance[numWithinTol] = i;
-			numWithinTol++;
-		}
-		
-	}
-	
-	hardware.turn(180);
-	
-	if (numWithinTol > 0){
-		std::cout << "Objects found: " << numWithinTol << std::endl << "Objects located at: ";
-	
-		for (int i = 0; i < numWithinTol; i++){
-			std::cout << withinTolerance[i];
-		}
-		
-		std::cout << std::endl;
-	}
+	hardware.turn(angle);
 }
 
 void Node::locateOne(){//check if area is open
@@ -131,7 +77,7 @@ void Node::locateOne(){//check if area is open
 	hardware.turn(90);
 	tempPair = hardware.moveForward(yAxis / 4);
 	
-	//Communication::write("");//node name
+	writer.write(std::string("NodeOneLocalized ") + std::string(ros::this_node::getName()) + " " + std::to_string(yAxis) + " " + std::to_string(xAxisLeft) + " " + std::to_string(xAxisRight));//node name, xleft, xright, y
 }
 
 void Node::locateTwo(){
@@ -142,9 +88,16 @@ void Node::locateTwo(){
 	//0 0 0 0 3 9 3 0 - 
 	
 	//ensure that this faces the same direction as the first when moving starts
+	
+	writer.write("NodeTwoLocalized ");
 }
 
 void Node::locateThree(){
-	
+	writer.write("NodeThreeLocalized ");
 }
+
+void Node::busy(bool isBusy){
+	writer.write(std::string("Busy") + std::string(ros::this_node::getName()) + std::string(isBusy));
+}
+
 

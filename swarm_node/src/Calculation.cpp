@@ -94,6 +94,7 @@ std::tuple<float, float, float, float> Calculation::twoCircleIntersect(float r1,
 	return std::make_tuple(centerX, centerY, area, error);// x/y location of center of radical line, area of union, and percent error
 }
 
+/*
 //direction of movement since last measurement
 float Calculation::determineAngle(float xCurrent, float yCurrent, float xPrevious, float yPrevious) {
 	float posX, posY, rad, degree;
@@ -110,3 +111,4 @@ float Calculation::determineAngle(float xCurrent, float yCurrent, float xPreviou
 
 	return degree;
 }
+*/

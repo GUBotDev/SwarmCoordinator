@@ -1,5 +1,7 @@
 #include "Hardware.h"
 
+mmapGpio Hardware::gpio;
+
 std::pair<bool, float> Hardware::moveForward(float meters){
 	//meters to steps
 	wheelCirc = 2 * pi * wheelRadius;
@@ -41,8 +43,103 @@ std::pair<bool, float> Hardware::moveBackward(float meters){
 	return foundObject;
 }
 
+std::pair<bool, float> Hardware::fullScan(){
+	float* withinTolerance;
+	int numWithinTol = 0;
+	float tempDist = 5;
+	std::pair<bool, float> temp;
+
+	for (int i = 0; i < 180 / turnIncrement; i += turnIncrement){
+		turn(i);
+		
+		float tempFront = readUltrasonic(true);
+		float tempBack = readUltrasonic(false);
+		
+		if (tempFront < objDisTolerance){
+			withinTolerance[numWithinTol] = i;
+			numWithinTol++;
+			
+			if (tempDist > tempFront){
+				tempDist = tempFront;
+			}
+		}
+		
+		if (tempBack < objDisTolerance){
+			withinTolerance[numWithinTol] = i + 180;
+			numWithinTol++;
+			
+			if (tempDist > tempBack){
+				tempDist = tempBack;
+			}
+		}
+	}
+	
+	turn(180);
+	
+	if (numWithinTol > 0){
+		std::cout << "Objects found: " << numWithinTol << std::endl << "Objects located at: ";
+	
+		for (int i = 0; i < numWithinTol; i++){
+			std::cout << withinTolerance[i];
+		}
+		
+		std::cout << std::endl;
+		
+		temp.first = true;
+		temp.second = tempDist;
+	}
+	else{
+		temp.first = false;
+		temp.second = 0;
+	}
+}
+
+std::pair<bool, float> Hardware::forwardScan(float angle){
+	float* withinTolerance;
+	int numWithinTol = 0;
+	float tempDist = 5;
+	std::pair<bool, float> temp;
+
+	for (int i = -15; i < 15 / turnIncrement; i += turnIncrement){
+		turn(i);
+		
+		float tempFront = readUltrasonic(true);
+		
+		if (tempFront < objDisTolerance){
+			withinTolerance[numWithinTol] = i;
+			numWithinTol++;
+			
+			if (tempDist > tempFront){
+				tempDist = tempFront;
+			}
+		}
+	}
+	
+	turn(-15);
+	
+	if (numWithinTol > 0){
+		std::cout << "Objects found: " << numWithinTol << std::endl << "Objects located at: ";
+	
+		for (int i = 0; i < numWithinTol; i++){
+			std::cout << withinTolerance[i];
+		}
+		
+		std::cout << std::endl;
+		
+		temp.first = true;
+		temp.second = tempDist;
+	}
+	else{
+		temp.first = false;
+		temp.second = 0;
+	}
+	
+	return temp;
+}
+
+
 void Hardware::turn(float angle){
-	//currentDirection = 
+	currentDirection = readCompass();
 
 	targetDirection = angle + currentDirection;
 	degrees = (robotCirc / wheelCirc) * (targetDirection - currentDirection);
@@ -543,7 +640,7 @@ float Hardware::readUltrasonic(bool isUlForward){//return distance in meters
 
 }
 
-float Hardware::readCompass(){//return angle from north
+float Hardware::readCompass(){//return degrees from north
 
 }
 

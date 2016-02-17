@@ -1,11 +1,11 @@
 #include "DecisionHandler.h"
 
+Node DecisionHandler::node;
+Calculation DecisionHandler::calculate;
+
 void DecisionHandler::decide(float x, float y, float targetDirection, float* xBeacons, float* yBeacons, std::string* beaconID, int numBeacons, bool isInFormation){
 	const int amount = numBeacons;
 	float radii[amount];
-	
-	radii[1];
-	radii[2];
 	
 	for (int i = 0; i < amount; i++){
 		radii[i] = node.hardware.readBeacons(beaconID[i]);
@@ -22,11 +22,11 @@ void DecisionHandler::decide(float x, float y, float targetDirection, float* xBe
 	
 	if (tempX > positionTolerance || tempY > positionTolerance){
 		//shift position
-		
+		node.moveToPosition(x, y);
 	}
 	
 	if (node.hardware.readCompass() > (targetDirection + angleTolerance) || node.hardware.readCompass() < (targetDirection - angleTolerance)){
 		//shift angle
-		
+		node.turnTo(targetDirection);
 	}
 }
