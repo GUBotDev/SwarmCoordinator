@@ -4,6 +4,7 @@
 #include <array>
 #include <vector>
 #include <iostream>
+#include <tuple>
 #include "mmapGpio.h"
 #include "stdio.h"
 
@@ -12,7 +13,7 @@ public:
 	void turn(float targetDirection);
 	std::pair<bool, float> moveForward(float meters);
 	std::pair<bool, float> moveBackward(float meters);
-	std::pair<bool, float> forwardScan(float angle);
+	std::tuple<bool, float, float> forwardScan(float angle);
 	std::pair<bool, float> fullScan();
 	float readBeacons(std::string name);//return radius
 	float readUltrasonic(bool isUlForward);//returns distance in front of node

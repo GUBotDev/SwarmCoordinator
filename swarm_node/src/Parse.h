@@ -12,12 +12,8 @@ public:
 	std::vector<std::string> split(const std::string &s, char delim, std::vector<std::string> &elems);
 	void parseData(std::string);
 private:
-	float x;
-	float y;
-	float targetDirection;
-	float compass;
-	float ultrasonic;
 	int nodeNum;
+	bool isWaiting = false;
 	std::string name;
 	static DecisionHandler decHand;
 };

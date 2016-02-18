@@ -1,32 +1,74 @@
 #include "DecisionHandler.h"
 
 Node DecisionHandler::node;
-Calculation DecisionHandler::calculate;
+//bool DecisionHandler::initComp = false;
 
-void DecisionHandler::decide(float x, float y, float targetDirection, float* xBeacons, float* yBeacons, std::string* beaconID, int numBeacons, bool isInFormation){
-	const int amount = numBeacons;
-	float radii[amount];
-	
-	for (int i = 0; i < amount; i++){
-		radii[i] = node.hardware.readBeacons(beaconID[i]);
+void DecisionHandler::setBeacons(float* x, float* y, std::string* ID, int numBeacons){
+	node.setBeacons(x, y, ID, numBeacons);
+	beaconsInitialized = true;
+}
+
+void DecisionHandler::move(float x, float y){
+	if (initComp && beaconsInitialized){
+		std::pair<float, float> tempPos = node.returnXY();
+		node.moveToPosition(x, y, tempPos.first, tempPos.second);
+		node.checkTolerances(x, y, tempPos.first, tempPos.second);
 	}
-	
-	//check tolerance of positioning and angle
-	std::pair<float, float> temp = calculate.multilateration(radii, xBeacons, yBeacons, numBeacons);
-	
-	node.xPos = temp.first;
-	node.yPos = temp.second;
-	
-	float tempX = abs(x - node.xPos);
-	float tempY = abs(y - node.yPos);
-	
-	if (tempX > positionTolerance || tempY > positionTolerance){
-		//shift position
-		node.moveToPosition(x, y);
-	}
-	
-	if (node.hardware.readCompass() > (targetDirection + angleTolerance) || node.hardware.readCompass() < (targetDirection - angleTolerance)){
-		//shift angle
-		node.turnTo(targetDirection);
+	else{
+		node.initialize();
+		node.requestBeacons();
 	}
 }
+
+void DecisionHandler::turn(float targetDirection){
+	if (initComp && beaconsInitialized){
+		node.turnTo(targetDirection);
+		node.checkTolerances(targetDirection);
+	}
+	else{
+		node.initialize();
+		node.requestBeacons();
+	}
+}
+
+void DecisionHandler::localize(int num){
+	if (initComp && beaconsInitialized){
+		switch(num){
+			case 1:
+				node.locateOne();
+				break;
+			case 2:
+				node.locateTwo();
+				break;
+			case 3:
+				node.locateThree();
+				break;
+		}
+	}
+	else{
+		node.initialize();
+		node.requestBeacons();
+	}
+}
+
+void DecisionHandler::initialize(){
+	node.initialize();
+}
+
+void DecisionHandler::initComplete(){
+	initComp = true;
+}
+
+bool DecisionHandler::isInit(){
+	return initComp;
+}
+
+void DecisionHandler::alreadyInitialized(){
+	node.alreadyInitialized();
+}
+
+void DecisionHandler::unknownCommand(){
+	node.unknownCommand();
+}
+
+

@@ -1,17 +1,22 @@
 #pragma once
 
 #include <string>
+#include <thread>
 #include "Node.h"
-#include "Calculation.h"
 
 class DecisionHandler {
 public:
-	void decide(float x, float y, float targetDirection, float* xBeacons, float* yBeacons, std::string* beaconID, int numBeacons, bool isInFormation);
+	void setBeacons(float* x, float* y, std::string* ID, int numBeacons);
+	void move(float x, float y);
+	void turn(float targetDirection);
+	void localize(int num);
+	void initialize();
+	void initComplete();
+	bool isInit();
+	void alreadyInitialized();
+	void unknownCommand();
 private:
+	bool initComp = false;
+	bool beaconsInitialized = false;
 	static Node node;
-	static Calculation calculate;
-	const float positionTolerance = 0.25;//+/- meters
-	const float angleTolerance = 10;//+/-degrees
-	int numOfBeacons;
-	int numOfRobots;
 };
