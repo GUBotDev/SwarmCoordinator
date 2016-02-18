@@ -94,11 +94,11 @@ std::pair<bool, float> Hardware::fullScan(){
 	}
 }
 
-std::tuple<bool, float, float> Hardware::forwardScan(float angle){
+std::tuple<bool, float, float> Hardware::forwardScan(){
 	float* withinTolerance;
 	int numWithinTol = 0;
 	float tempDist = 5;
-	float tempAngle
+	float tempAngle;
 	std::tuple<bool, float, float> temp;
 
 	for (int i = -15; i < 15 / turnIncrement; i += turnIncrement){

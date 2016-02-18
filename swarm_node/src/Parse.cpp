@@ -83,7 +83,7 @@ void Parse::parseData(std::string data){
 			
 			int tempNum = std::stoi(splitMsg[2]);
 			
-			decHand.localize(tempNum, xAxis, yAxis, );
+			decHand.localize(tempNum);//, xAxis, yAxis, );
 		}
 		else{
 			decHand.unknownCommand();
