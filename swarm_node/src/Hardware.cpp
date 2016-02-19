@@ -2,6 +2,7 @@
 
 mmapGpio Hardware::gpio;
 
+
 std::pair<bool, float> Hardware::moveForward(float meters){
 	//meters to steps
 	wheelCirc = 2 * pi * wheelRadius;
@@ -631,13 +632,42 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 	}
 }
 
+std::string getCommandOutput(std::string cmd) {
+	std::string data;
+	FILE * stream;
+	const int max_buffer = 256;
+	char buffer[max_buffer];
+	cmd.append(" 2>&1");
+
+	stream = popen(cmd.c_str(), "r");
+	if (stream) {	
+		while (!feof(stream)){
+
+			if (fgets(buffer, max_buffer, stream) != NULL){
+				data.append(buffer)
+			}
+			
+			pclose(stream);
+		}
+	}
+
+	return data;
+}
+
+float Hardware::calcInverseSquare(float intensity){
+	float tempRad = sqrt(power / (4 * pi * intensity));//inverse square
+	
+	return tempRad;
+}
 
 float Hardware::readBeacons(std::string name){//return beacon radii
+	std::string out = getCommandOutput("hcitool");
 
+	std::cout << out << std::endl;
 }
 
 float Hardware::readUltrasonic(bool isUlForward){//return distance in meters
-
+	
 }
 
 float Hardware::readCompass(){//return degrees from north

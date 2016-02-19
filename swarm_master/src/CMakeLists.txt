@@ -10,20 +10,21 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
 set(swarm_coord_lib_source
 	Calculation.cpp
 	Calculation.h
-	Communication.cpp
-	Communication.h
 	DecisionHandler.cpp
 	DecisionHandler.h
 	Parse.cpp
 	Parse.h
+	Read.cpp
+	Read.h
 	Threading.cpp
 	Threading.h
+	Write.cpp
+	Write.h
 )
 
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
-
 
 add_executable(swarm_coordinator Main.cpp)
 

@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <tuple>
+#include <math.h>
 #include "mmapGpio.h"
 #include "stdio.h"
 
@@ -19,6 +20,8 @@ public:
 	float readUltrasonic(bool isUlForward);//returns distance in front of node
 	float readCompass();
 	float readGravityVector();
+	float calcInverseSquare(float intensity);
+	std::string Hardware::getCommandOutput(std::string cmd); 
 private:
 	std::pair<bool, float> step(int steps, bool isMvForward);
 	std::pair<bool, float> foundObject;
@@ -28,6 +31,7 @@ private:
 	const float robotRadius = 0.0825;//required
 	const float objDisTolerance = 0.5;//meters 
 	const int turnIncrement = 5;//degrees
+	const int power = -12;//dBm ibeacon transmit power
 	float wheelCirc;
 	float robotCirc;
 	float degrees;
