@@ -1,20 +1,20 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 #include <vector>
-#include <sstream>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-#include <unistd.h>
 #include "NodeHandler.h"
 
 class Write {
 public:
-	void initWrite(ros::Publisher inPublisher);
 	void write(std::string);
 	void initializeAll();
 	void moveToPosition(std::string name, float x, float y, float dir);
 	void initAllThread();
 private:
-	ros::Publisher publisher;
+	//static ros::NodeHandle nodeHand;
+	bool isHand = false;
+	//NodeHandler nHR;
 };

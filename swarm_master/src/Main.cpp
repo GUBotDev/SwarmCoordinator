@@ -7,15 +7,23 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "NodeHandler.h"
 
 //handle threads only
 int main(int argc, char **argv) {
-	ros::init(argc, argv, "Master");//, ros::init_options::AnonymousName);
-	
+	ros::init(argc, argv, "Master", ros::init_options::AnonymousName);
+	ros::NodeHandle nhMain;
+	//NodeHandler::setNodeHandle(&nhMain);
 	//creates read thread
-	std::thread read(&Threading::readThread, Threading());
+	std::thread read(&Threading::readThread, Threading(), nhMain);
+	
+	ros::Publisher publisher;
+	
+	publisher = nhMain.advertise<std_msgs::String>("NodeDown", 1000);
 	
 	Write writer;
+	
+	writer.initWrite(publisher);
 	
 	int num;
 	
@@ -53,7 +61,8 @@ int main(int argc, char **argv) {
 	
 	}
 	
-	read.join();
+	
+	//read.join();
 	
 	/*
 	Write writer;

@@ -9,7 +9,7 @@
 
 class Threading {
 public:
-	void readThread();
+	void readThread(ros::NodeHandle nh);
 private:
 	static Read rosComm;
 };

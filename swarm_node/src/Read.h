@@ -9,7 +9,7 @@
 
 class Read {
 public:
-	void read();
+	void read(ros::NodeHandle nh);
 	void readerCallback(const std_msgs::String::ConstPtr& msg);
 private:
 	Parse parseObj;

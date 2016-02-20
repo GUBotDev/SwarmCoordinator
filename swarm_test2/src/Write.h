@@ -7,8 +7,7 @@
 
 class Write {
 public:
-	void initWrite(ros::Publisher inPublisher);
 	void write(std::string);
 private:
-	static ros::Publisher publisher;
+
 };

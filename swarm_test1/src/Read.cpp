@@ -8,13 +8,14 @@ void Read::readerCallback(const std_msgs::String::ConstPtr& msg){
 	
 	//parse to find orders
 	//parseObj.parseData(msg->data.c_str());
+	//std::cout << msg->data.c_str() << std::endl;
 }
 
-void Read::read(ros::NodeHandle nh){
-	//ros::NodeHandle nh;// = NodeHandler::returnNodeHandle();
+void Read::read(){
+	ros::NodeHandle nodeHan;
 	ros::Subscriber reader;
 	
-	reader = nh.subscribe("NodeUp", 1000, &Read::readerCallback, this);
+	reader = nodeHan.subscribe("NodeUp", 1000, &Read::readerCallback, this);
 			
 	ros::spin();
 }

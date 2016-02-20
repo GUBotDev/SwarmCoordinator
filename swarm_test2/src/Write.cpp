@@ -1,12 +1,10 @@
 #include "Write.h"
 
-ros::Publisher Write::publisher;
-
-void Write::initWrite(ros::Publisher inPublisher){
-	publisher = inPublisher;
-}
-
 void Write::write(std::string input){
+	ros::NodeHandle nodeHand;
+	ros::Publisher publisher;
+	
+	publisher = nodeHand.advertise<std_msgs::String>("NodeUp", 1000);
 
 	std_msgs::String msg;
 	std::stringstream ss;

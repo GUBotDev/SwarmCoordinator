@@ -8,16 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
 
 set(swarm_coord_lib_source
-	Node.cpp
-	Node.h
-	NodeHandler.cpp
-	NodeHandler.h
-	Parse.cpp
-	Parse.h
 	Read.cpp
 	Read.h
-	Threading.cpp
-	Threading.h
 	Write.cpp
 	Write.h
 )

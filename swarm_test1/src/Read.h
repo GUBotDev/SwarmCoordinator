@@ -5,10 +5,9 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 
-class Write {
+class Read {
 public:
-	void initWrite(ros::Publisher inPublisher);
-	void write(std::string);
+	void read();
+	void readerCallback(const std_msgs::String::ConstPtr& msg);
 private:
-	static ros::Publisher publisher;
 };

@@ -10,11 +10,10 @@ void Read::readerCallback(const std_msgs::String::ConstPtr& msg){
 	parseObj.parseData(msg->data.c_str());
 }
 
-void Read::read(){
-	ros::NodeHandle nodeHan;
+void Read::read(ros::NodeHandle nh){
 	ros::Subscriber reader;
 	
-	reader = nodeHan.subscribe("NodeDown", 1000, &Read::readerCallback, this);
+	reader = nh.subscribe("NodeDown", 1000, &Read::readerCallback, this);
 			
 	ros::spin();
 }

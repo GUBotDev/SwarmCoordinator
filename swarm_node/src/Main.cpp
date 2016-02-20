@@ -1,13 +1,21 @@
 #include <thread>
 #include "Threading.h"
 #include "ros/ros.h"
+#include "Write.h"
 
 //handle threads only
 int main(int argc, char **argv) {
 	ros::init(argc, argv, "Master");//, ros::init_options::AnonymousName);
-	
+	ros::NodeHandle nh;
+	ros::Publisher publisherMain;
 	//creates read thread
-	std::thread read(&Threading::readThread, Threading());
+	std::thread read(&Threading::readThread, Threading(), nh);
+	
+	Write writer;
+	
+	writer.initWrite(publisherMain);
+	
+	
 	
 	/*
 	Write rosComm;
