@@ -632,7 +632,7 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 	}
 }
 
-std::string getCommandOutput(std::string cmd) {
+std::string Hardware::getCommandOutput(std::string cmd) {
 	std::string data;
 	FILE * stream;
 	const int max_buffer = 256;
@@ -640,11 +640,11 @@ std::string getCommandOutput(std::string cmd) {
 	cmd.append(" 2>&1");
 
 	stream = popen(cmd.c_str(), "r");
+	
 	if (stream) {	
 		while (!feof(stream)){
-
 			if (fgets(buffer, max_buffer, stream) != NULL){
-				data.append(buffer)
+				data.append(buffer);
 			}
 			
 			pclose(stream);
@@ -654,20 +654,46 @@ std::string getCommandOutput(std::string cmd) {
 	return data;
 }
 
-float Hardware::calcInverseSquare(float intensity){
-	float tempRad = sqrt(power / (4 * pi * intensity));//inverse square
-	
-	return tempRad;
+float Hardware::findDistance(float intensity){
+	float expo = (27.55 - (20 * log10(2410)) + abs(intensity) - 36) / 20.0;
+	return pow(10, expo);
 }
 
 float Hardware::readBeacons(std::string name){//return beacon radii
-	std::string out = getCommandOutput("hcitool");
+	std::string out = getCommandOutput("hcitool rssi " + name);
 
 	std::cout << out << std::endl;
 }
 
 float Hardware::readUltrasonic(bool isUlForward){//return distance in meters
+	//ping
+	gpio.setPinDir(8, mmapGpio::OUTPUT);
+	gpio.writePinLow(8);
+	usleep(2000);//microseconds
+	gpio.writePinHigh(8);
+	usleep(5000);
+	gpio.writePinLow(8);
 	
+	//pong
+	gpio.setPinDir(8, mmapGpio::INPUT);
+	gpio.writePinHigh(8);
+	
+	auto timeInit = Clock::now();
+	int temp = 0;
+	
+	while(gpio.readPin(8) == 0){
+		if (temp > 1000000){
+			break;//prevent infinite loop
+		}
+		
+		temp++;
+	}
+	
+	auto timePost = Clock::now();
+	long tempMicroSeconds = std::chrono::duration_cast<std::chrono::nanoseconds>(timeInit - timePost).count() * 1000;//nano to mico
+	float distance = (tempMicroSeconds / 5813.8);//time to distance
+	
+	return distance;
 }
 
 float Hardware::readCompass(){//return degrees from north

@@ -15,3 +15,21 @@ void Write::write(std::string input){
 	publisher.publish(msg);
 	ros::spinOnce();
 }
+
+void Write::initializeAll(){
+	auto initAllThread();
+}
+
+void Write::moveToPosition(std::string name, float x, float y, float dir){
+	std::string concat = name + " " + std::to_string(x) + " " + std::to_string(y) + " " + std::to_string(dir);
+	
+	write(concat);
+}
+
+void Write::initAllThread(){
+	write("All initialize");
+	usleep(50000);
+	write("All initialize");
+	usleep(50000);
+	write("All initialize");
+}

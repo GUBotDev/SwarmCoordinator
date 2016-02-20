@@ -10,6 +10,5 @@ void Threading::readThread() {
 		catch (std::exception ex) {
 			std::cout << "read thread error" << std::endl;
 		}
-		
 	}
 }

@@ -8,6 +8,10 @@
 #include <math.h>
 #include "mmapGpio.h"
 #include "stdio.h"
+#include <unistd.h>//unix sleep
+#include <chrono>//timer
+
+typedef std::chrono::high_resolution_clock Clock;
 
 class Hardware {
 public:
@@ -20,8 +24,8 @@ public:
 	float readUltrasonic(bool isUlForward);//returns distance in front of node
 	float readCompass();
 	float readGravityVector();
-	float calcInverseSquare(float intensity);
-	std::string Hardware::getCommandOutput(std::string cmd); 
+	float findDistance(float);
+	std::string getCommandOutput(std::string cmd); 
 private:
 	std::pair<bool, float> step(int steps, bool isMvForward);
 	std::pair<bool, float> foundObject;
