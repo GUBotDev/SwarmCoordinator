@@ -2,7 +2,6 @@
 
 mmapGpio Hardware::gpio;
 
-
 std::pair<bool, float> Hardware::moveForward(float meters){
 	//meters to steps
 	wheelCirc = 2 * pi * wheelRadius;
@@ -276,6 +275,8 @@ void Hardware::turn(float angle){
 					gpio.writePinHigh(7);
 					break;
 			}
+			
+			usleep(82000);//51.2 mm/s
 		}
 	}
 	else{
@@ -390,6 +391,8 @@ void Hardware::turn(float angle){
 					gpio.writePinHigh(7);
 					break;
 			}
+			
+			usleep(82000);//51.2 mm/s
 		}
 	}
 }
@@ -508,6 +511,8 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 						gpio.writePinHigh(7);
 						break;
 				}
+				
+				usleep(82000);//51.2 mm/s
 			}
 			else{
 				tempBoolSteps.first = true;//obstacle found
@@ -619,6 +624,8 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 						gpio.writePinHigh(7);
 						break;
 				}
+				
+				usleep(82000);//51.2 mm/s
 			}
 			else{
 				tempBoolSteps.first = true;//obstacle found
@@ -632,10 +639,10 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 	}
 }
 
-std::string Hardware::getCommandOutput(std::string cmd) {
+std::string Hardware::getCommandOutput(std::string cmd, int bytes) {
 	std::string data;
 	FILE * stream;
-	const int max_buffer = 256;
+	const int max_buffer = bytes;
 	char buffer[max_buffer];
 	cmd.append(" 2>&1");
 
@@ -655,14 +662,113 @@ std::string Hardware::getCommandOutput(std::string cmd) {
 }
 
 float Hardware::findDistance(float intensity){
-	float expo = (27.55 - (20 * log10(2410)) + abs(intensity) - 36) / 20.0;
+	float expo = (27.55 - (20 * log10(2410)) + abs(intensity) - 45) / 20.0;
 	return pow(10, expo);
 }
 
-float Hardware::readBeacons(std::string name){//return beacon radii
-	std::string out = getCommandOutput("hcitool rssi " + name);
+float* Hardware::readBeacons(std::string* beaconID, int amount){//return beacon radii
+	std::string out;
+	
+	out = getCommandOutput("hcitool lescan", 256);
+	out = getCommandOutput("hcidump", 8096);
+	
+	int beaconsFound = 0;
+	
+	std::vector<std::string> splitHCIEvent;
+	std::vector<std::string> splitHCIEventLine;
+	std::vector<std::string> splitHCIEventLineData;
+	std::vector<std::pair<std::string, float>> localRegister;
+	std::vector<int> localRegisterAvgNums;
+	float* radii;
+	
+	try{
+		split(out, '>', splitHCIEvent);
+	
+		for (int i = 0; i < splitHCIEvent.size(); i++){
+			split(splitHCIEvent[i], '\n', splitHCIEventLine);
+		
+			split(splitHCIEventLine[0], ' ', splitHCIEventLineData);
+		
+			if (splitHCIEventLineData[7] == "39" && splitHCIEventLine.size() == 8){
+				split(splitHCIEventLine[3], ' ', splitHCIEventLineData);
+				
+				for (int k = 0; k < amount; k++){
+					if (beaconID[k] == splitHCIEventLineData[1]){//beacon exists in register
+						if (beaconsFound == 0){// local beacon list is empty
+							localRegister[beaconsFound].first = splitHCIEventLineData[1];//add mac to local register
+							
+							split(splitHCIEventLine[7], ' ', splitHCIEventLineData);
+							
+							localRegister[beaconsFound].second = std::stof(splitHCIEventLineData[1]);//add rssi to local register
+							
+							if (localRegisterAvgNums[beaconsFound] == 0){
+								localRegisterAvgNums[beaconsFound] = 0;
+							}
+							else{
+								localRegisterAvgNums[beaconsFound]++;
+							}
+							
+							beaconsFound++;
+						}
+						else{
+							bool isInLocReg = false;
+							int location;
+							
+							for (int j = 0; j < beaconsFound; j++){
+								if (localRegister[j].first == splitHCIEventLineData[1]){//mac address for beacon is already in register
+									isInLocReg == true;
+									location = j;
+								}
+							}
+							
+							if (!isInLocReg){//adds to register if not already present
+								localRegister[beaconsFound].first = splitHCIEventLineData[1];//add mac to local register
+							
+								split(splitHCIEventLine[7], ' ', splitHCIEventLineData);
+							
+								localRegister[beaconsFound].second = std::stof(splitHCIEventLineData[1]);//add rssi to local register
+							}
+							else{
+								split(splitHCIEventLine[7], ' ', splitHCIEventLineData);
+							
+								localRegister[location].second += std::stof(splitHCIEventLineData[1]);//add rssi to local register
+								
+								
+								if (localRegisterAvgNums[beaconsFound] == 0){
+									localRegisterAvgNums[beaconsFound] = 0;
+								}
+								else{
+									localRegisterAvgNums[beaconsFound]++;
+								}//end else
+							}//end else
+						}//end else
+					}//end if
+				}//end for
+			}//end if
+		}//end for
+		
+		for (int i = 0; i < localRegister.size(); i++){
+			for (int k = 0; k < amount; k++){
+				if (localRegister[i].first == beaconID[k]){//sorts based on original ordering
+					radii[k] = findDistance(localRegister[i].second / localRegisterAvgNums[i]);
+				}
+			}
+		}
+	}
+	catch (std::exception ex){
+	
+	}
+}
 
-	std::cout << out << std::endl;
+std::vector<std::string> Hardware::split(const std::string &s, char delim, std::vector<std::string> &elems) {
+    std::stringstream ss(s);
+    std::string item;
+
+    while (std::getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+
+    return elems;
 }
 
 float Hardware::readUltrasonic(bool isUlForward){//return distance in meters
@@ -697,10 +803,10 @@ float Hardware::readUltrasonic(bool isUlForward){//return distance in meters
 }
 
 float Hardware::readCompass(){//return degrees from north
-
+	return 0;
 }
 
 float Hardware::readGravityVector(){
-
+	return 0;
 }
 

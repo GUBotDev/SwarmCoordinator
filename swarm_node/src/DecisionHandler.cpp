@@ -31,17 +31,17 @@ void DecisionHandler::turn(float targetDirection){
 	}
 }
 
-void DecisionHandler::localize(int num){
+void DecisionHandler::localize(int num, float direction, std::string macOne, std::string macTwo){
 	if (initComp && beaconsInitialized){
 		switch(num){
 			case 1:
 				node.locateOne();
 				break;
 			case 2:
-				node.locateTwo();
+				node.locateTwo(direction);
 				break;
 			case 3:
-				node.locateThree();
+				node.locateThree(macOne, macTwo, direction);
 				break;
 		}
 	}
@@ -65,6 +65,10 @@ bool DecisionHandler::isInit(){
 
 void DecisionHandler::alreadyInitialized(){
 	node.alreadyInitialized();
+}
+
+void DecisionHandler::sendPosDir(){
+	node.sendLastPositionDirection();
 }
 
 void DecisionHandler::unknownCommand(){

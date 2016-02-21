@@ -7,7 +7,6 @@ void Write::initWrite(ros::Publisher inPublisher){
 }
 
 void Write::write(std::string input){
-
 	std_msgs::String msg;
 	std::stringstream ss;
 	ss << input;

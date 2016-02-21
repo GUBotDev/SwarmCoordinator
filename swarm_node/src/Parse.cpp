@@ -81,9 +81,30 @@ void Parse::parseData(std::string data){
 		else if (splitMsg[1] == "localize"){
 			isWaiting = false;
 			
-			int tempNum = std::stoi(splitMsg[2]);
+			//int num, float direction, std::string macOne, std::string macTwo
 			
-			decHand.localize(tempNum);//, xAxis, yAxis, );
+			int tempNum = std::stoi(splitMsg[2]);
+			float tempDir;
+			
+			switch(tempNum){
+				case 0:
+					decHand.localize(tempNum, 0, 0, 0);
+					break;
+				case 1:
+					tempDir = std::stof(splitMsg[3]);
+					decHand.localize(tempNum, tempDir, 0, 0);
+					break;
+				case 2:
+					std::string macOne = splitMsg[3];
+					std::string macTwo = splitMsg[4];
+					tempDir = std::stof(splitMsg[5]);
+					decHand.localize(tempNum, tempDir, macOne, macTwo);
+					break;
+			}
+			
+		}
+		else if (splitMsg[1] == "return_position"){
+			decHand.sendPosDir();
 		}
 		else{
 			decHand.unknownCommand();
