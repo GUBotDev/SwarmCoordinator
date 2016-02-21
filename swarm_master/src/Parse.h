@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 #include "Node.h"
+#include "Write.h"
 
 class Parse {
 public:
@@ -13,4 +14,8 @@ public:
 	void handleInput(int nodeNum, std::vector<std::string> splitMsg);
 private:
 	static std::vector<Node> nodes;
+	static int beacons = 0;
+	static std::vector<int> beaconArray;
+	Write writer;
+	static float baseDirection;
 };

@@ -74,7 +74,7 @@ void Node::locateOne(){//check if area is open
 	
 	baseDirection = hardware.readCompass();
 	
-	writer.write(ros::this_node::getName() + " is_localized_as 1 " + std::to_string(xAxisLeft + xAxisRight) + " " + std::to_string(yAxis) + " " + std::to_string(baseDirection));
+	writer.write(ros::this_node::getName() + " is_localized_as 1 " + std::to_string(baseDirection));
 	
 	busy(false);
 }
@@ -249,13 +249,15 @@ void Node::setBeacons(float* xBeacons, float* yBeacons, std::string* ID, int num
 }
 
 void Node::objectFound(float x, float y, float distance){
-	float tempPos = distance * sin(baseDirection);
+	float currentDir = hardware.readCompass();
+	float newX = x + sin(currentDir) * distance;
+	float newY = y + cos(currentDir) * distance;	
 	
-	writer.write(ros::this_node::getName() + " object_found_at " + std::to_string(tempPos));
+	writer.write(ros::this_node::getName() + " object_found_at " + std::to_string(newX) + " " + std::to_string(newY));
 }
 
 void Node::initialize(){
-	writer.write(ros::this_node::getName() + " initialize " + (hasBeacon ? "true" : ("false " + beaconAddress)));
+	writer.write(ros::this_node::getName() + " initialize " + (hasBeacon ? ("true " + beaconAddress) : "false "));
 }
 
 void Node::sendPositionDirection(float x, float y, bool obstacle){
@@ -271,7 +273,7 @@ void Node::sendLastPositionDirection(){
 }
 
 void Node::alreadyInitialized(){
-	writer.write(ros::this_node::getName() + " initialized " + (hasBeacon ? "true" : ("false " + beaconAddress)));
+	writer.write(ros::this_node::getName() + " initialized " + (hasBeacon ? ("true " + beaconAddress) : "false "));
 }
 
 void Node::unknownCommand(){
