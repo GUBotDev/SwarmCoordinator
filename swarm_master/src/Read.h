@@ -2,7 +2,6 @@
 
 #include <string>
 #include <vector>
-#include "NodeHandler.h"
 #include "Parse.h"
 #include "ros/ros.h"
 #include "std_msgs/String.h"

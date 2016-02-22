@@ -11,11 +11,12 @@ public:
 	std::vector<std::string> split(const std::string &s, char delim, std::vector<std::string> &elems);
 	void parseData(std::string);
 	static std::vector<Node> returnNodes();
-	void handleInput(int nodeNum, std::vector<std::string> splitMsg);
+	void handleInput(int nodeNum, std::vector<std::string> splitMsg, std::string data);
+	static float returnBaseDir();
 private:
 	static std::vector<Node> nodes;
-	static int beacons = 0;
-	static std::vector<int> beaconArray;
+	int beacons;
+	std::vector<int> beaconArray;
 	Write writer;
 	static float baseDirection;
 };

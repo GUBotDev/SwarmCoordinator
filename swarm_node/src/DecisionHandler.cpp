@@ -71,8 +71,8 @@ void DecisionHandler::sendPosDir(){
 	node.sendLastPositionDirection();
 }
 
-void DecisionHandler::unknownCommand(){
-	node.unknownCommand();
+void DecisionHandler::unknownCommand(std::string data){
+	node.unknownCommand(data);
 }
 
 

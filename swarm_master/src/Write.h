@@ -6,7 +6,6 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include <unistd.h>
-#include "NodeHandler.h"
 
 class Write {
 public:

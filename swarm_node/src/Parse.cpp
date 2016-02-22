@@ -107,7 +107,7 @@ void Parse::parseData(std::string data){
 			decHand.sendPosDir();
 		}
 		else{
-			decHand.unknownCommand();
+			decHand.unknownCommand(data);
 		}
 	}
 }

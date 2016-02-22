@@ -276,8 +276,8 @@ void Node::alreadyInitialized(){
 	writer.write(ros::this_node::getName() + " initialized " + (hasBeacon ? ("true " + beaconAddress) : "false "));
 }
 
-void Node::unknownCommand(){
-	writer.write(ros::this_node::getName() + " confused");
+void Node::unknownCommand(std::string data){
+	writer.write(ros::this_node::getName() + " confused_about |" + data + "|");
 }
 
 

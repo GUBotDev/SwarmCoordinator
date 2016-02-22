@@ -15,7 +15,7 @@ public:
 	bool isInit();
 	void alreadyInitialized();
 	void sendPosDir();
-	void unknownCommand();
+	void unknownCommand(std::string data);
 private:
 	bool initComp = false;
 	bool beaconsInitialized = false;

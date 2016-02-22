@@ -28,7 +28,7 @@ public:
 	void objectFound(float x, float y, float distance);
 	void initialize();
 	void alreadyInitialized();
-	void unknownCommand();
+	void unknownCommand(std::string data);
 	void sendLastPositionDirection();
 	void sendPositionDirection(float x, float y, bool obstacle);
 private:

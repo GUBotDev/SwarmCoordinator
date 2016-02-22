@@ -3,12 +3,15 @@
 #include <cmath>
 #include <array>
 #include <vector>
+#include "Parse.h"
 
 class Movement {
 public:
-	void setFormation(int formation, ControllerNode controller);
+	void setFormation(int formation);
 private:
-	void invertedV(ControllerNode controller);
-	void cross(ControllerNode controller);
-	void diamond(ControllerNode controller);
+	void invertedV();
+	void xPattern();
+	void diamond();
+	std::vector<Node> nodes;
+	float baseDirection;
 };

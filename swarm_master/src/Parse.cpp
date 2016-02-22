@@ -1,6 +1,7 @@
 #include "Parse.h"
 
 std::vector<Node> Parse::nodes;
+float Parse::baseDirection;
 //void handleInput(in);
 
 std::vector<Node> Parse::returnNodes(){
@@ -30,7 +31,7 @@ void Parse::parseData(std::string data){
 	for (int i = 0; i < splitMsg.size(); i++){
 		for (int i = 0; i < nodes.size(); i++){
 			if (nodes[i].getName() == splitMsg[0]){
-				handleInput(i, splitMsg);
+				handleInput(i, splitMsg, data);
 			}
 			else{
 				int tempInt = nodes.size() + 1;
@@ -38,15 +39,13 @@ void Parse::parseData(std::string data){
 				nodes[tempInt] = tempNode;
 				nodes[tempInt].setName(splitMsg[0]);
 				
-				nodes[tempInt].handleInput(data);
-				
-				handleInput(tempInt, splitMsg);
+				handleInput(tempInt, splitMsg, data);
 			}
 		}
 	}
 }
 
-void Parse::handleInput(int nodeNum, std::vector<std::string> splitMsg){
+void Parse::handleInput(int nodeNum, std::vector<std::string> splitMsg, std::string data){
 	if (splitMsg[1] == "initialize"){
 		if (splitMsg[2] == "true"){
 			nodes[nodeNum].setBeacon(true);
@@ -69,9 +68,9 @@ void Parse::handleInput(int nodeNum, std::vector<std::string> splitMsg){
 		std::string tempConcat = "All beacons " + std::to_string(beaconArray.size());
 		
 		for (int i = 0; i < beaconArray.size(); i++){
-			tempTuple = nodes[nodeNum].returnXYMac;
+			tempTuple = nodes[nodeNum].returnXYMac();
 			
-			tempConcat += " " + std::to_string(std::get<0>(tempTuple)) + " " + std::to_string(std::get<1>(tempTuple)) + " " + std::to_string(std::get<2>(tempTuple));
+			tempConcat += " " + std::to_string(std::get<0>(tempTuple)) + " " + std::to_string(std::get<1>(tempTuple)) + " " + std::get<2>(tempTuple);
 		}
 		
 		writer.write(tempConcat);
@@ -108,20 +107,49 @@ void Parse::handleInput(int nodeNum, std::vector<std::string> splitMsg){
 		}
 	}
 	else if (splitMsg[1] == "location_direction"){
+		nodes[nodeNum].setXYD(std::stof(splitMsg[2]), std::stof(splitMsg[3]), std::stof(splitMsg[4]));
 		
+		if (splitMsg[5] == "true"){
+			//obstacle handling
+			
+		}
 	}
 	else if (splitMsg[1] == "initialized"){
 		if (splitMsg[2] == "true"){
 			nodes[nodeNum].setBeacon(true);
+			nodes[nodeNum].setAddress(splitMsg[3]);
+			
+			if (beacons == 0){
+				beaconArray[beacons] = nodeNum;
+				
+				nodes[nodeNum].localizeOne();
+			
+				beacons++;
+			}
+			
+			std::string concat = nodes[nodeNum].getName() + " initialized";
+			
+			writer.write(concat);
 		}
 		else{
 			nodes[nodeNum].setBeacon(false);
 		}
+	}
+	else if (splitMsg[1] == "confused_about"){
+		std::vector<std::string> splitData;
+		std::vector<std::string> splitErrMsg;
+	
+		split(data, ' ', splitData);
+		split(splitData[1], ' ', splitErrMsg);
+		
+		//splitErrMsg is original message that was sent and returned
 	}
 	else{
 		std::cout << "Master is confused." << std::endl;
 	}
 }
 
-
+float Parse::returnBaseDir(){
+	return baseDirection;
+}
 

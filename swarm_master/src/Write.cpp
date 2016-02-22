@@ -22,12 +22,6 @@ void Write::initializeAll(){
 	initAllThread();
 }
 
-void Write::moveToPosition(std::string name, float x, float y, float dir){
-	std::string concat = name + " " + std::to_string(x) + " " + std::to_string(y) + " " + std::to_string(dir);
-	
-	write(concat);
-}
-
 void Write::initAllThread(){
 	write("All initialize");
 	usleep(50000);
@@ -35,4 +29,11 @@ void Write::initAllThread(){
 	usleep(50000);
 	write("All initialize");
 }
+
+void Write::moveToPosition(std::string name, float x, float y, float dir){
+	std::string concat = name + " move " + std::to_string(x) + " " + std::to_string(y) + " " + std::to_string(dir);
+	
+	write(concat);
+}
+
 
