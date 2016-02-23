@@ -8,6 +8,9 @@ int main(int argc, char **argv) {
 	ros::init(argc, argv, "Master");//, ros::init_options::AnonymousName);
 	ros::NodeHandle nh;
 	ros::Publisher publisherMain;
+	
+	publisherMain = nh.advertise<std_msgs::String>("NodeUp", 1000);
+	
 	//creates read thread
 	std::thread read(&Threading::readThread, Threading(), nh);
 	

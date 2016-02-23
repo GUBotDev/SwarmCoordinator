@@ -4,6 +4,14 @@ Hardware Node::hardware;
 Write Node::writer;
 Calculation Node::calculate;
 
+void Node::setBeacon(int input){
+	beaconNum = input;
+}
+
+int Node::getBeacon(){
+	return beaconNum;
+}
+
 void Node::moveToPosition(float x, float y, float xPos, float yPos) {// moves single robot
 	busy(true);
 	

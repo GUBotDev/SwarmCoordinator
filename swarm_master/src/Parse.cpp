@@ -62,6 +62,10 @@ void Parse::handleInput(int nodeNum, std::vector<std::string> splitMsg, std::str
 		else{
 			nodes[nodeNum].setBeacon(false);
 		}
+		
+		std::string tempConcat = nodes[nodeNum].getName() + " initialized";
+			
+		writer.write(tempConcat);
 	}
 	else if (splitMsg[1] == "request_beacons"){
 		std::tuple<float, float, std::string> tempTuple;

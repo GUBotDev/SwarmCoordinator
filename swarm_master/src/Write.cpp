@@ -35,5 +35,3 @@ void Write::moveToPosition(std::string name, float x, float y, float dir){
 	
 	write(concat);
 }
-
-

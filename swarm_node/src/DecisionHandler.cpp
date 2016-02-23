@@ -9,6 +9,12 @@ void DecisionHandler::setBeacons(float* x, float* y, std::string* ID, int numBea
 }
 
 void DecisionHandler::move(float x, float y){
+	/*
+	if (node.getBeacon() <= 3 && node.getBeacon() >= 1){
+		node.moveToPosition(x, y, , );
+	}
+	else 
+	*/
 	if (initComp && beaconsInitialized){
 		std::pair<float, float> tempPos = node.returnXY();
 		node.moveToPosition(x, y, tempPos.first, tempPos.second);
@@ -36,12 +42,15 @@ void DecisionHandler::localize(int num, float direction, std::string macOne, std
 		switch(num){
 			case 1:
 				node.locateOne();
+				node.setBeacon(1);
 				break;
 			case 2:
 				node.locateTwo(direction);
+				node.setBeacon(2);
 				break;
 			case 3:
 				node.locateThree(macOne, macTwo, direction);
+				node.setBeacon(3);
 				break;
 		}
 	}

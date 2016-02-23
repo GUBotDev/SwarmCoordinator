@@ -31,6 +31,8 @@ public:
 	void unknownCommand(std::string data);
 	void sendLastPositionDirection();
 	void sendPositionDirection(float x, float y, bool obstacle);
+	void setBeacon(int input);
+	int getBeacon();
 private:
 	const bool hasBeacon = true;//report relatively static xy position to master
 	int beaconNum;//the number assigned by the master if the node has a beacon
