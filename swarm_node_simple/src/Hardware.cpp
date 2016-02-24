@@ -696,74 +696,51 @@ float* Hardware::readBeacons(std::string* beaconID, int amount){//return beacon 
 	
 	int beaconsFound = 0;
 	
-	std::vector<std::string> splitHCIEvent;
-	std::vector<std::string> splitHCIEventLine;
-	std::vector<std::string> splitHCIEventLineData;
+	std::vector<std::string> splitHCI = split(out, '>');
+	
 	std::vector<std::pair<std::string, float>> localRegister;
-	std::vector<int> localRegisterAvgNums;
 	float* radii;
 	
 	try{
-		split(out, '>', splitHCIEvent);
-	
-		for (int i = 0; i < splitHCIEvent.size(); i++){
-			split(splitHCIEvent[i], '\n', splitHCIEventLine);
-		
-			split(splitHCIEventLine[0], ' ', splitHCIEventLineData);
-		
-			if (splitHCIEventLineData[7] == "39" && splitHCIEventLine.size() == 8){
-				split(splitHCIEventLine[3], ' ', splitHCIEventLineData);
-				
+		for (int i = 0; i < splitHCI.size(); i++){
+			std::vector<std::string> splitHCIL = split(splitHCI[i], '\n');
+			
+			if (split(splitHCIL[0], ' ')[8] == "39" || split(splitHCIL[0], ' ')[8] == "42"){				
 				for (int k = 0; k < amount; k++){
-					if (beaconID[k] == splitHCIEventLineData[1]){//beacon exists in register
-						if (beaconsFound == 0){// local beacon list is empty
-							localRegister[beaconsFound].first = splitHCIEventLineData[1];//add mac to local register
+					if (beaconID[k] == split(splitHCIL[3], ' ')[7]){//beacon exists in register
+						bool isInLocReg = false;
+						int location;
 							
-							split(splitHCIEventLine[7], ' ', splitHCIEventLineData);
+						for (int j = 0; j < beaconsFound; j++){
+							if (localRegister[j].first == split(splitHCIL[3], ' ')[7]){//mac address for beacon is already in register
+								isInLocReg == true;
+								location = j;
+							}
+						}
+						
+						if (!isInLocReg){//adds to register if not already present
+							std::pair<std::string, float> tempPair;
 							
-							localRegister[beaconsFound].second = std::stof(splitHCIEventLineData[1]);//add rssi to local register
+							tempPair.first = split(splitHCIL[3], ' ')[7];//add mac to local register
 							
-							if (localRegisterAvgNums[beaconsFound] == 0){
-								localRegisterAvgNums[beaconsFound] = 0;
+							if (split(splitHCIL[0], ' ')[8] == "39"){
+								tempPair.second = std::stof(split(splitHCIL[7], ' ')[7]);//add rssi to local register
 							}
 							else{
-								localRegisterAvgNums[beaconsFound]++;
+								tempPair.second = std::stof(split(splitHCIL[6], ' ')[7]);
 							}
 							
-							beaconsFound++;
+							localRegister.push_back(tempPair);
 						}
 						else{
-							bool isInLocReg = false;
-							int location;
-							
-							for (int j = 0; j < beaconsFound; j++){
-								if (localRegister[j].first == splitHCIEventLineData[1]){//mac address for beacon is already in register
-									isInLocReg == true;
-									location = j;
-								}
-							}
-							
-							if (!isInLocReg){//adds to register if not already present
-								localRegister[beaconsFound].first = splitHCIEventLineData[1];//add mac to local register
-							
-								split(splitHCIEventLine[7], ' ', splitHCIEventLineData);
-							
-								localRegister[beaconsFound].second = std::stof(splitHCIEventLineData[1]);//add rssi to local register
+							if (split(splitHCIL[0], ' ')[8] == "39"){
+								localRegister[location].second = std::stof(split(splitHCIL[7], ' ')[7]);//add rssi to local register
 							}
 							else{
-								split(splitHCIEventLine[7], ' ', splitHCIEventLineData);
-							
-								localRegister[location].second += std::stof(splitHCIEventLineData[1]);//add rssi to local register
-								
-								
-								if (localRegisterAvgNums[beaconsFound] == 0){
-									localRegisterAvgNums[beaconsFound] = 0;
-								}
-								else{
-									localRegisterAvgNums[beaconsFound]++;
-								}//end else
-							}//end else
+								localRegister[location].second = std::stof(split(splitHCIL[6], ' ')[7]);
+							}
 						}//end else
+						
 					}//end if
 				}//end for
 			}//end if
@@ -772,7 +749,7 @@ float* Hardware::readBeacons(std::string* beaconID, int amount){//return beacon 
 		for (int i = 0; i < localRegister.size(); i++){
 			for (int k = 0; k < amount; k++){
 				if (localRegister[i].first == beaconID[k]){//sorts based on original ordering
-					radii[k] = findDistance(localRegister[i].second / localRegisterAvgNums[i]);
+					radii[k] = findDistance(localRegister[i].second);
 				}
 			}
 		}
@@ -782,9 +759,10 @@ float* Hardware::readBeacons(std::string* beaconID, int amount){//return beacon 
 	}
 }
 
-std::vector<std::string> Hardware::split(const std::string &s, char delim, std::vector<std::string> &elems) {
+std::vector<std::string> Hardware::split(const std::string &s, char delim) {
     std::stringstream ss(s);
     std::string item;
+    std::vector<std::string> elems;
 
     while (std::getline(ss, item, delim)) {
         elems.push_back(item);

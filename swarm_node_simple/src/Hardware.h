@@ -27,7 +27,7 @@ public:
 	float readGravityVector();
 	float findDistance(float);
 	std::string getCommandOutput(std::string cmd, int bytes);
-	std::vector<std::string> split(const std::string &s, char delim, std::vector<std::string> &elems);
+	std::vector<std::string> split(const std::string &s, char delim);
 private:
 	std::pair<bool, float> step(int steps, bool isMvForward);
 	std::pair<bool, float> foundObject;
