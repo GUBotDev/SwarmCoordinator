@@ -44,6 +44,9 @@ int main(int argc, char **argv) {
 					formation.setFormation(tempNum);
 					break;
 				case 2:
+					std::cout << "Localize One" << std::endl;
+					break;
+				case 3:
 					float x, y, dir;
 					std::string tempName;
 					std::vector<Node> tempNodes = Parse::returnNodes();

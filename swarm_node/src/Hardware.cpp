@@ -156,14 +156,23 @@ void Hardware::turn(float angle){
 	
 	steps = degrees / stepAngle;
 	
-	gpio.setPinDir(0, mmapGpio::OUTPUT);
-	gpio.setPinDir(1, mmapGpio::OUTPUT);
-	gpio.setPinDir(2, mmapGpio::OUTPUT);
-	gpio.setPinDir(3, mmapGpio::OUTPUT);
-	gpio.setPinDir(4, mmapGpio::OUTPUT);
-	gpio.setPinDir(5, mmapGpio::OUTPUT);
-	gpio.setPinDir(6, mmapGpio::OUTPUT);
-	gpio.setPinDir(7, mmapGpio::OUTPUT);
+	int pin0 = 2;
+	int pin1 = 3; 
+	int pin2 = 4;
+	int pin3 = 5;
+	int pin4 = 6;
+	int pin5 = 13;
+	int pin6 = 19;
+	int pin7 = 26;
+	
+	gpio.setPinDir(pin0, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin1, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin2, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin3, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin4, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin5, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin6, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin7, mmapGpio::OUTPUT);
 	
 	if (steps > 0){
 		int temp = steps;
@@ -173,52 +182,52 @@ void Hardware::turn(float angle){
 
 			switch (stepAmount){
 				case 0:
-					gpio.writePinLow(0);
-					gpio.writePinLow(1);
-					gpio.writePinLow(2);
-					gpio.writePinHigh(3);
+					gpio.writePinLow(pin0);
+					gpio.writePinLow(pin1);
+					gpio.writePinLow(pin2);
+					gpio.writePinHigh(pin3);
 					break;
 				case 1:
-					gpio.writePinLow(0);
-					gpio.writePinLow(1);
-					gpio.writePinHigh(2);
-					gpio.writePinHigh(3);
+					gpio.writePinLow(pin0);
+					gpio.writePinLow(pin1);
+					gpio.writePinHigh(pin2);
+					gpio.writePinHigh(pin3);
 					break;
 				case 2:
-					gpio.writePinLow(0);
-					gpio.writePinLow(1);
-					gpio.writePinHigh(2);
-					gpio.writePinLow(3);
+					gpio.writePinLow(pin0);
+					gpio.writePinLow(pin1);
+					gpio.writePinHigh(pin2);
+					gpio.writePinLow(pin3);
 					break;
 				case 3:
-					gpio.writePinLow(0);
-					gpio.writePinHigh(1);
-					gpio.writePinHigh(2);
-					gpio.writePinLow(3);
+					gpio.writePinLow(pin0);
+					gpio.writePinHigh(pin1);
+					gpio.writePinHigh(pin2);
+					gpio.writePinLow(pin3);
 					break;
 				case 4:
-					gpio.writePinLow(0);
-					gpio.writePinHigh(1);
-					gpio.writePinLow(2);
-					gpio.writePinLow(3);
+					gpio.writePinLow(pin0);
+					gpio.writePinHigh(pin1);
+					gpio.writePinLow(pin2);
+					gpio.writePinLow(pin3);
 					break;
 				case 5:
-					gpio.writePinHigh(0);
-					gpio.writePinHigh(1);
-					gpio.writePinLow(2);
-					gpio.writePinLow(3);
+					gpio.writePinHigh(pin0);
+					gpio.writePinHigh(pin1);
+					gpio.writePinLow(pin2);
+					gpio.writePinLow(pin3);
 					break;
 				case 6:
-					gpio.writePinHigh(0);
-					gpio.writePinLow(1);
-					gpio.writePinLow(2);
-					gpio.writePinLow(3);
+					gpio.writePinHigh(pin0);
+					gpio.writePinLow(pin1);
+					gpio.writePinLow(pin2);
+					gpio.writePinLow(pin3);
 					break;
 				case 7:
-					gpio.writePinHigh(0);
-					gpio.writePinLow(1);
-					gpio.writePinLow(2);
-					gpio.writePinHigh(3);
+					gpio.writePinHigh(pin0);
+					gpio.writePinLow(pin1);
+					gpio.writePinLow(pin2);
+					gpio.writePinHigh(pin3);
 					break;
 			}
 			
@@ -227,52 +236,52 @@ void Hardware::turn(float angle){
 			
 			switch (stepAmount){
 				case 0:
-					gpio.writePinLow(4);
-					gpio.writePinLow(5);
-					gpio.writePinLow(6);
-					gpio.writePinHigh(7);
+					gpio.writePinLow(pin4);
+					gpio.writePinLow(pin5);
+					gpio.writePinLow(pin6);
+					gpio.writePinHigh(pin7);
 					break;
 				case 1:
-					gpio.writePinLow(4);
-					gpio.writePinLow(5);
-					gpio.writePinHigh(6);
-					gpio.writePinHigh(7);
+					gpio.writePinLow(pin4);
+					gpio.writePinLow(pin5);
+					gpio.writePinHigh(pin6);
+					gpio.writePinHigh(pin7);
 					break;
 				case 2:
-					gpio.writePinLow(4);
-					gpio.writePinLow(5);
-					gpio.writePinHigh(6);
-					gpio.writePinLow(7);
+					gpio.writePinLow(pin4);
+					gpio.writePinLow(pin5);
+					gpio.writePinHigh(pin6);
+					gpio.writePinLow(pin7);
 					break;
 				case 3:
-					gpio.writePinLow(4);
-					gpio.writePinHigh(5);
-					gpio.writePinHigh(6);
-					gpio.writePinLow(7);
+					gpio.writePinLow(pin4);
+					gpio.writePinHigh(pin5);
+					gpio.writePinHigh(pin6);
+					gpio.writePinLow(pin7);
 					break;
 				case 4:
-					gpio.writePinLow(4);
-					gpio.writePinHigh(5);
-					gpio.writePinLow(6);
-					gpio.writePinLow(7);
+					gpio.writePinLow(pin4);
+					gpio.writePinHigh(pin5);
+					gpio.writePinLow(pin6);
+					gpio.writePinLow(pin7);
 					break;
 				case 5:
-					gpio.writePinHigh(4);
-					gpio.writePinHigh(5);
-					gpio.writePinLow(6);
-					gpio.writePinLow(7);
+					gpio.writePinHigh(pin4);
+					gpio.writePinHigh(pin5);
+					gpio.writePinLow(pin6);
+					gpio.writePinLow(pin7);
 					break;
 				case 6:
-					gpio.writePinHigh(4);
-					gpio.writePinLow(5);
-					gpio.writePinLow(6);
-					gpio.writePinLow(7);
+					gpio.writePinHigh(pin4);
+					gpio.writePinLow(pin5);
+					gpio.writePinLow(pin6);
+					gpio.writePinLow(pin7);
 					break;
 				case 7:
-					gpio.writePinHigh(4);
-					gpio.writePinLow(5);
-					gpio.writePinLow(6);
-					gpio.writePinHigh(7);
+					gpio.writePinHigh(pin4);
+					gpio.writePinLow(pin5);
+					gpio.writePinLow(pin6);
+					gpio.writePinHigh(pin7);
 					break;
 			}
 			
@@ -289,52 +298,52 @@ void Hardware::turn(float angle){
 
 			switch (stepAmount){
 				case 0:
-					gpio.writePinLow(0);
-					gpio.writePinLow(1);
-					gpio.writePinLow(2);
-					gpio.writePinHigh(3);
+					gpio.writePinLow(pin0);
+					gpio.writePinLow(pin1);
+					gpio.writePinLow(pin2);
+					gpio.writePinHigh(pin3);
 					break;
 				case 1:
-					gpio.writePinLow(0);
-					gpio.writePinLow(1);
-					gpio.writePinHigh(2);
-					gpio.writePinHigh(3);
+					gpio.writePinLow(pin0);
+					gpio.writePinLow(pin1);
+					gpio.writePinHigh(pin2);
+					gpio.writePinHigh(pin3);
 					break;
 				case 2:
-					gpio.writePinLow(0);
-					gpio.writePinLow(1);
-					gpio.writePinHigh(2);
-					gpio.writePinLow(3);
+					gpio.writePinLow(pin0);
+					gpio.writePinLow(pin1);
+					gpio.writePinHigh(pin2);
+					gpio.writePinLow(pin3);
 					break;
 				case 3:
-					gpio.writePinLow(0);
-					gpio.writePinHigh(1);
-					gpio.writePinHigh(2);
-					gpio.writePinLow(3);
+					gpio.writePinLow(pin0);
+					gpio.writePinHigh(pin1);
+					gpio.writePinHigh(pin2);
+					gpio.writePinLow(pin3);
 					break;
 				case 4:
-					gpio.writePinLow(0);
-					gpio.writePinHigh(1);
-					gpio.writePinLow(2);
-					gpio.writePinLow(3);
+					gpio.writePinLow(pin0);
+					gpio.writePinHigh(pin1);
+					gpio.writePinLow(pin2);
+					gpio.writePinLow(pin3);
 					break;
 				case 5:
-					gpio.writePinHigh(0);
-					gpio.writePinHigh(1);
-					gpio.writePinLow(2);
-					gpio.writePinLow(3);
+					gpio.writePinHigh(pin0);
+					gpio.writePinHigh(pin1);
+					gpio.writePinLow(pin2);
+					gpio.writePinLow(pin3);
 					break;
 				case 6:
-					gpio.writePinHigh(0);
-					gpio.writePinLow(1);
-					gpio.writePinLow(2);
-					gpio.writePinLow(3);
+					gpio.writePinHigh(pin0);
+					gpio.writePinLow(pin1);
+					gpio.writePinLow(pin2);
+					gpio.writePinLow(pin3);
 					break;
 				case 7:
-					gpio.writePinHigh(0);
-					gpio.writePinLow(1);
-					gpio.writePinLow(2);
-					gpio.writePinHigh(3);
+					gpio.writePinHigh(pin0);
+					gpio.writePinLow(pin1);
+					gpio.writePinLow(pin2);
+					gpio.writePinHigh(pin3);
 					break;
 			}
 			
@@ -343,52 +352,52 @@ void Hardware::turn(float angle){
 			
 			switch (stepAmount){
 				case 0:
-					gpio.writePinLow(4);
-					gpio.writePinLow(5);
-					gpio.writePinLow(6);
-					gpio.writePinHigh(7);
+					gpio.writePinLow(pin4);
+					gpio.writePinLow(pin5);
+					gpio.writePinLow(pin6);
+					gpio.writePinHigh(pin7);
 					break;
 				case 1:
-					gpio.writePinLow(4);
-					gpio.writePinLow(5);
-					gpio.writePinHigh(6);
-					gpio.writePinHigh(7);
+					gpio.writePinLow(pin4);
+					gpio.writePinLow(pin5);
+					gpio.writePinHigh(pin6);
+					gpio.writePinHigh(pin7);
 					break;
 				case 2:
-					gpio.writePinLow(4);
-					gpio.writePinLow(5);
-					gpio.writePinHigh(6);
-					gpio.writePinLow(7);
+					gpio.writePinLow(pin4);
+					gpio.writePinLow(pin5);
+					gpio.writePinHigh(pin6);
+					gpio.writePinLow(pin7);
 					break;
 				case 3:
-					gpio.writePinLow(4);
-					gpio.writePinHigh(5);
-					gpio.writePinHigh(6);
-					gpio.writePinLow(7);
+					gpio.writePinLow(pin4);
+					gpio.writePinHigh(pin5);
+					gpio.writePinHigh(pin6);
+					gpio.writePinLow(pin7);
 					break;
 				case 4:
-					gpio.writePinLow(4);
-					gpio.writePinHigh(5);
-					gpio.writePinLow(6);
-					gpio.writePinLow(7);
+					gpio.writePinLow(pin4);
+					gpio.writePinHigh(pin5);
+					gpio.writePinLow(pin6);
+					gpio.writePinLow(pin7);
 					break;
 				case 5:
-					gpio.writePinHigh(4);
-					gpio.writePinHigh(5);
-					gpio.writePinLow(6);
-					gpio.writePinLow(7);
+					gpio.writePinHigh(pin4);
+					gpio.writePinHigh(pin5);
+					gpio.writePinLow(pin6);
+					gpio.writePinLow(pin7);
 					break;
 				case 6:
-					gpio.writePinHigh(4);
-					gpio.writePinLow(5);
-					gpio.writePinLow(6);
-					gpio.writePinLow(7);
+					gpio.writePinHigh(pin4);
+					gpio.writePinLow(pin5);
+					gpio.writePinLow(pin6);
+					gpio.writePinLow(pin7);
 					break;
 				case 7:
-					gpio.writePinHigh(4);
-					gpio.writePinLow(5);
-					gpio.writePinLow(6);
-					gpio.writePinHigh(7);
+					gpio.writePinHigh(pin4);
+					gpio.writePinLow(pin5);
+					gpio.writePinLow(pin6);
+					gpio.writePinHigh(pin7);
 					break;
 			}
 			
@@ -398,14 +407,23 @@ void Hardware::turn(float angle){
 }
 
 std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
-	gpio.setPinDir(0, mmapGpio::OUTPUT);
-	gpio.setPinDir(1, mmapGpio::OUTPUT);
-	gpio.setPinDir(2, mmapGpio::OUTPUT);
-	gpio.setPinDir(3, mmapGpio::OUTPUT);
-	gpio.setPinDir(4, mmapGpio::OUTPUT);
-	gpio.setPinDir(5, mmapGpio::OUTPUT);
-	gpio.setPinDir(6, mmapGpio::OUTPUT);
-	gpio.setPinDir(7, mmapGpio::OUTPUT);
+	int pin0 = 2;
+	int pin1 = 3; 
+	int pin2 = 4;
+	int pin3 = 5;
+	int pin4 = 6;
+	int pin5 = 13;
+	int pin6 = 19;
+	int pin7 = 26;
+
+	gpio.setPinDir(pin0, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin1, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin2, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin3, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin4, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin5, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin6, mmapGpio::OUTPUT);
+	gpio.setPinDir(pin7, mmapGpio::OUTPUT);
 	
 	std::pair<bool, float> tempBoolSteps;
 	
@@ -423,92 +441,92 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 			if (ultraDist < objDisTolerance){
 				switch (stepAmount){
 					case 0:
-						gpio.writePinLow(0);
-						gpio.writePinLow(1);
-						gpio.writePinLow(2);
-						gpio.writePinHigh(3);
+						gpio.writePinLow(pin0);
+						gpio.writePinLow(pin1);
+						gpio.writePinLow(pin2);
+						gpio.writePinHigh(pin3);
 					
-						gpio.writePinLow(4);
-						gpio.writePinLow(5);
-						gpio.writePinLow(6);
-						gpio.writePinHigh(7);
+						gpio.writePinLow(pin4);
+						gpio.writePinLow(pin5);
+						gpio.writePinLow(pin6);
+						gpio.writePinHigh(pin7);
 						break;
 					case 1:
-						gpio.writePinLow(0);
-						gpio.writePinLow(1);
-						gpio.writePinHigh(2);
-						gpio.writePinHigh(3);
+						gpio.writePinLow(pin0);
+						gpio.writePinLow(pin1);
+						gpio.writePinHigh(pin2);
+						gpio.writePinHigh(pin3);
 					
-						gpio.writePinLow(4);
-						gpio.writePinLow(5);
-						gpio.writePinHigh(6);
-						gpio.writePinHigh(7);
+						gpio.writePinLow(pin4);
+						gpio.writePinLow(pin5);
+						gpio.writePinHigh(pin6);
+						gpio.writePinHigh(pin7);
 						break;
 					case 2:
-						gpio.writePinLow(0);
-						gpio.writePinLow(1);
-						gpio.writePinHigh(2);
-						gpio.writePinLow(3);
+						gpio.writePinLow(pin0);
+						gpio.writePinLow(pin1);
+						gpio.writePinHigh(pin2);
+						gpio.writePinLow(pin3);
 					
-						gpio.writePinLow(4);
-						gpio.writePinLow(5);
-						gpio.writePinHigh(6);
-						gpio.writePinLow(7);
+						gpio.writePinLow(pin4);
+						gpio.writePinLow(pin5);
+						gpio.writePinHigh(pin6);
+						gpio.writePinLow(pin7);
 						break;
 					case 3:
-						gpio.writePinLow(0);
-						gpio.writePinHigh(1);
-						gpio.writePinHigh(2);
-						gpio.writePinLow(3);
+						gpio.writePinLow(pin0);
+						gpio.writePinHigh(pin1);
+						gpio.writePinHigh(pin2);
+						gpio.writePinLow(pin3);
 					
-						gpio.writePinLow(4);
-						gpio.writePinHigh(5);
-						gpio.writePinHigh(6);
-						gpio.writePinLow(7);
+						gpio.writePinLow(pin4);
+						gpio.writePinHigh(pin5);
+						gpio.writePinHigh(pin6);
+						gpio.writePinLow(pin7);
 						break;
 					case 4:
-						gpio.writePinLow(0);
-						gpio.writePinHigh(1);
-						gpio.writePinLow(2);
-						gpio.writePinLow(3);
+						gpio.writePinLow(pin0);
+						gpio.writePinHigh(pin1);
+						gpio.writePinLow(pin2);
+						gpio.writePinLow(pin3);
 					
-						gpio.writePinLow(4);
-						gpio.writePinHigh(5);
-						gpio.writePinLow(6);
-						gpio.writePinLow(7);
+						gpio.writePinLow(pin4);
+						gpio.writePinHigh(pin5);
+						gpio.writePinLow(pin6);
+						gpio.writePinLow(pin7);
 						break;
 					case 5:
-						gpio.writePinHigh(0);
-						gpio.writePinHigh(1);
-						gpio.writePinLow(2);
-						gpio.writePinLow(3);
+						gpio.writePinHigh(pin0);
+						gpio.writePinHigh(pin1);
+						gpio.writePinLow(pin2);
+						gpio.writePinLow(pin3);
 					
-						gpio.writePinHigh(4);
-						gpio.writePinHigh(5);
-						gpio.writePinLow(6);
-						gpio.writePinLow(7);
+						gpio.writePinHigh(pin4);
+						gpio.writePinHigh(pin5);
+						gpio.writePinLow(pin6);
+						gpio.writePinLow(pin7);
 						break;
 					case 6:
-						gpio.writePinHigh(0);
-						gpio.writePinLow(1);
-						gpio.writePinLow(2);
-						gpio.writePinLow(3);
+						gpio.writePinHigh(pin0);
+						gpio.writePinLow(pin1);
+						gpio.writePinLow(pin2);
+						gpio.writePinLow(pin3);
 					
-						gpio.writePinHigh(4);
-						gpio.writePinLow(5);
-						gpio.writePinLow(6);
-						gpio.writePinLow(7);
+						gpio.writePinHigh(pin4);
+						gpio.writePinLow(pin5);
+						gpio.writePinLow(pin6);
+						gpio.writePinLow(pin7);
 						break;
 					case 7:
-						gpio.writePinHigh(0);
-						gpio.writePinLow(1);
-						gpio.writePinLow(2);
-						gpio.writePinHigh(3);
+						gpio.writePinHigh(pin0);
+						gpio.writePinLow(pin1);
+						gpio.writePinLow(pin2);
+						gpio.writePinHigh(pin3);
 					
-						gpio.writePinHigh(4);
-						gpio.writePinLow(5);
-						gpio.writePinLow(6);
-						gpio.writePinHigh(7);
+						gpio.writePinHigh(pin4);
+						gpio.writePinLow(pin5);
+						gpio.writePinLow(pin6);
+						gpio.writePinHigh(pin7);
 						break;
 				}
 				
@@ -536,92 +554,92 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 			if (ultraDist < objDisTolerance){
 				switch (stepAmount){
 					case 0:
-						gpio.writePinLow(0);
-						gpio.writePinLow(1);
-						gpio.writePinLow(2);
-						gpio.writePinHigh(3);
+						gpio.writePinLow(pin0);
+						gpio.writePinLow(pin1);
+						gpio.writePinLow(pin2);
+						gpio.writePinHigh(pin3);
 					
-						gpio.writePinLow(4);
-						gpio.writePinLow(5);
-						gpio.writePinLow(6);
-						gpio.writePinHigh(7);
+						gpio.writePinLow(pin4);
+						gpio.writePinLow(pin5);
+						gpio.writePinLow(pin6);
+						gpio.writePinHigh(pin7);
 						break;
 					case 1:
-						gpio.writePinLow(0);
-						gpio.writePinLow(1);
-						gpio.writePinHigh(2);
-						gpio.writePinHigh(3);
+						gpio.writePinLow(pin0);
+						gpio.writePinLow(pin1);
+						gpio.writePinHigh(pin2);
+						gpio.writePinHigh(pin3);
 					
-						gpio.writePinLow(4);
-						gpio.writePinLow(5);
-						gpio.writePinHigh(6);
-						gpio.writePinHigh(7);
+						gpio.writePinLow(pin4);
+						gpio.writePinLow(pin5);
+						gpio.writePinHigh(pin6);
+						gpio.writePinHigh(pin7);
 						break;
 					case 2:
-						gpio.writePinLow(0);
-						gpio.writePinLow(1);
-						gpio.writePinHigh(2);
-						gpio.writePinLow(3);
+						gpio.writePinLow(pin0);
+						gpio.writePinLow(pin1);
+						gpio.writePinHigh(pin2);
+						gpio.writePinLow(pin3);
 					
-						gpio.writePinLow(4);
-						gpio.writePinLow(5);
-						gpio.writePinHigh(6);
-						gpio.writePinLow(7);
+						gpio.writePinLow(pin4);
+						gpio.writePinLow(pin5);
+						gpio.writePinHigh(pin6);
+						gpio.writePinLow(pin7);
 						break;
 					case 3:
-						gpio.writePinLow(0);
-						gpio.writePinHigh(1);
-						gpio.writePinHigh(2);
-						gpio.writePinLow(3);
+						gpio.writePinLow(pin0);
+						gpio.writePinHigh(pin1);
+						gpio.writePinHigh(pin2);
+						gpio.writePinLow(pin3);
 					
-						gpio.writePinLow(4);
-						gpio.writePinHigh(5);
-						gpio.writePinHigh(6);
-						gpio.writePinLow(7);
+						gpio.writePinLow(pin4);
+						gpio.writePinHigh(pin5);
+						gpio.writePinHigh(pin6);
+						gpio.writePinLow(pin7);
 						break;
 					case 4:
-						gpio.writePinLow(0);
-						gpio.writePinHigh(1);
-						gpio.writePinLow(2);
-						gpio.writePinLow(3);
+						gpio.writePinLow(pin0);
+						gpio.writePinHigh(pin1);
+						gpio.writePinLow(pin2);
+						gpio.writePinLow(pin3);
 					
-						gpio.writePinLow(4);
-						gpio.writePinHigh(5);
-						gpio.writePinLow(6);
-						gpio.writePinLow(7);
+						gpio.writePinLow(pin4);
+						gpio.writePinHigh(pin5);
+						gpio.writePinLow(pin6);
+						gpio.writePinLow(pin7);
 						break;
 					case 5:
-						gpio.writePinHigh(0);
-						gpio.writePinHigh(1);
-						gpio.writePinLow(2);
-						gpio.writePinLow(3);
+						gpio.writePinHigh(pin0);
+						gpio.writePinHigh(pin1);
+						gpio.writePinLow(pin2);
+						gpio.writePinLow(pin3);
 					
-						gpio.writePinHigh(4);
-						gpio.writePinHigh(5);
-						gpio.writePinLow(6);
-						gpio.writePinLow(7);
+						gpio.writePinHigh(pin4);
+						gpio.writePinHigh(pin5);
+						gpio.writePinLow(pin6);
+						gpio.writePinLow(pin7);
 						break;
 					case 6:
-						gpio.writePinHigh(0);
-						gpio.writePinLow(1);
-						gpio.writePinLow(2);
-						gpio.writePinLow(3);
+						gpio.writePinHigh(pin0);
+						gpio.writePinLow(pin1);
+						gpio.writePinLow(pin2);
+						gpio.writePinLow(pin3);
 					
-						gpio.writePinHigh(4);
-						gpio.writePinLow(5);
-						gpio.writePinLow(6);
-						gpio.writePinLow(7);
+						gpio.writePinHigh(pin4);
+						gpio.writePinLow(pin5);
+						gpio.writePinLow(pin6);
+						gpio.writePinLow(pin7);
 						break;
 					case 7:
-						gpio.writePinHigh(0);
-						gpio.writePinLow(1);
-						gpio.writePinLow(2);
-						gpio.writePinHigh(3);
+						gpio.writePinHigh(pin0);
+						gpio.writePinLow(pin1);
+						gpio.writePinLow(pin2);
+						gpio.writePinHigh(pin3);
 					
-						gpio.writePinHigh(4);
-						gpio.writePinLow(5);
-						gpio.writePinLow(6);
-						gpio.writePinHigh(7);
+						gpio.writePinHigh(pin4);
+						gpio.writePinLow(pin5);
+						gpio.writePinLow(pin6);
+						gpio.writePinHigh(pin7);
 						break;
 				}
 				
@@ -776,22 +794,24 @@ std::vector<std::string> Hardware::split(const std::string &s, char delim, std::
 }
 
 float Hardware::readUltrasonic(bool isUlForward){//return distance in meters
+	int pin = 21;
+	
 	//ping
-	gpio.setPinDir(8, mmapGpio::OUTPUT);
-	gpio.writePinLow(8);
+	gpio.setPinDir(pin, mmapGpio::OUTPUT);
+	gpio.writePinLow(pin);
 	usleep(2000);//microseconds
-	gpio.writePinHigh(8);
+	gpio.writePinHigh(pin);
 	usleep(5000);
-	gpio.writePinLow(8);
+	gpio.writePinLow(pin);
 	
 	//pong
-	gpio.setPinDir(8, mmapGpio::INPUT);
-	gpio.writePinHigh(8);
+	gpio.setPinDir(pin, mmapGpio::INPUT);
+	gpio.writePinHigh(pin);
 	
 	auto timeInit = Clock::now();
 	int temp = 0;
 	
-	while(gpio.readPin(8) == 0){
+	while(gpio.readPin(pin) == 0){
 		if (temp > 1000000){
 			break;//prevent infinite loop
 		}

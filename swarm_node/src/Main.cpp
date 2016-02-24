@@ -5,7 +5,7 @@
 
 //handle threads only
 int main(int argc, char **argv) {
-	ros::init(argc, argv, "Master");//, ros::init_options::AnonymousName);
+	ros::init(argc, argv, "Node", ros::init_options::AnonymousName);
 	ros::NodeHandle nh;
 	ros::Publisher publisherMain;
 	

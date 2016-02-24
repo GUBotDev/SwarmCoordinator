@@ -87,14 +87,14 @@ void Parse::parseData(std::string data){
 			float tempDir;
 			
 			switch(tempNum){
-				case 0:
-					decHand.localize(tempNum, 0, 0, 0);
-					break;
 				case 1:
-					tempDir = std::stof(splitMsg[3]);
-					decHand.localize(tempNum, tempDir, 0, 0);
+					decHand.localize(tempNum, 0, "", "");
 					break;
 				case 2:
+					tempDir = std::stof(splitMsg[3]);
+					decHand.localize(tempNum, tempDir, "", "");
+					break;
+				case 3:
 					std::string macOne = splitMsg[3];
 					std::string macTwo = splitMsg[4];
 					tempDir = std::stof(splitMsg[5]);

@@ -28,21 +28,32 @@ void Parse::parseData(std::string data){
 	
 	split(data, ' ', splitMsg);
 	
-	for (int i = 0; i < splitMsg.size(); i++){
+	//for (int i = 0; i < splitMsg.size(); i++){
+	if (nodes.size() > 0){
 		for (int i = 0; i < nodes.size(); i++){
 			if (nodes[i].getName() == splitMsg[0]){
 				handleInput(i, splitMsg, data);
 			}
 			else{
-				int tempInt = nodes.size() + 1;
+				int tempInt = nodes.size();
 				
-				nodes[tempInt] = tempNode;
+				nodes.push_back(tempNode);
 				nodes[tempInt].setName(splitMsg[0]);
 				
 				handleInput(tempInt, splitMsg, data);
 			}
 		}
 	}
+	else{
+		int tempInt = 0;
+		
+		//segmentation fault
+		nodes.push_back(tempNode);
+		nodes[tempInt].setName(splitMsg[0]);
+		
+		handleInput(tempInt, splitMsg, data);
+	}
+	//}
 }
 
 void Parse::handleInput(int nodeNum, std::vector<std::string> splitMsg, std::string data){
@@ -51,7 +62,7 @@ void Parse::handleInput(int nodeNum, std::vector<std::string> splitMsg, std::str
 			nodes[nodeNum].setBeacon(true);
 			nodes[nodeNum].setAddress(splitMsg[3]);
 			
-			beaconArray[beacons] = nodeNum;
+			beaconArray.push_back(nodeNum);
 				
 			if (beacons == 0){
 				nodes[nodeNum].localizeOne();

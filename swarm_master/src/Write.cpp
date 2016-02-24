@@ -1,5 +1,7 @@
 #include "Write.h"
 
+ros::Publisher Write::publisher;
+
 void Write::initWrite(ros::Publisher inPublisher){
 	publisher = inPublisher;
 }
@@ -24,10 +26,7 @@ void Write::initializeAll(){
 
 void Write::initAllThread(){
 	write("All initialize");
-	usleep(50000);
-	write("All initialize");
-	usleep(50000);
-	write("All initialize");
+	//usleep(50000);
 }
 
 void Write::moveToPosition(std::string name, float x, float y, float dir){

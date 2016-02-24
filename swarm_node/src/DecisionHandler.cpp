@@ -38,7 +38,7 @@ void DecisionHandler::turn(float targetDirection){
 }
 
 void DecisionHandler::localize(int num, float direction, std::string macOne, std::string macTwo){
-	if (initComp && beaconsInitialized){
+	//if (initComp && beaconsInitialized){
 		switch(num){
 			case 1:
 				node.locateOne();
@@ -53,11 +53,11 @@ void DecisionHandler::localize(int num, float direction, std::string macOne, std
 				node.setBeacon(3);
 				break;
 		}
-	}
+	/*}
 	else{
 		node.initialize();
 		node.requestBeacons();
-	}
+	}*/
 }
 
 void DecisionHandler::initialize(){

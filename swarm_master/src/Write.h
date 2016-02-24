@@ -15,5 +15,5 @@ public:
 	void moveToPosition(std::string name, float x, float y, float dir);
 	void initAllThread();
 private:
-	ros::Publisher publisher;
+	static ros::Publisher publisher;
 };
