@@ -145,7 +145,7 @@ void Hardware::turn(float angle){
 		if (degrees < 0){
 			degrees += 360;
 		}
-		else{
+		else if (degrees >= 360){
 			degrees -= 360;
 		}
 	}
@@ -174,7 +174,7 @@ void Hardware::turn(float angle){
 		int temp = steps;
 		
 		for (int i = 0; i < steps; i++){
-			stepAmount = steps % 8;
+			stepAmount = i % 8;
 
 			switch (stepAmount){
 				case 0:
@@ -281,7 +281,7 @@ void Hardware::turn(float angle){
 					break;
 			}
 			
-			usleep(82000);//51.2 mm/s
+			usleep(1000);//51.2 mm/s
 		}
 	}
 	else{
@@ -290,7 +290,7 @@ void Hardware::turn(float angle){
 		int temp = 0;
 		
 		for (int i = steps; i > 0; i--){
-			stepAmount = steps % 8;
+			stepAmount = i % 8;
 
 			switch (stepAmount){
 				case 0:
@@ -397,7 +397,7 @@ void Hardware::turn(float angle){
 					break;
 			}
 			
-			usleep(82000);//51.2 mm/s
+			usleep(1000);//51.2 mm/s
 		}
 	}
 }
@@ -426,7 +426,7 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 	//isMvForward steps -> 0,1,2,3,4,5 else 5,4,3,2,1,0
 	if (isMvForward){
 		for (int i = 0; i < steps; i++){
-			stepAmount = steps % 8;
+			stepAmount = i % 8;
 			
 			//ultraDist = readUltrasonic(isMvForward);
 			
@@ -526,7 +526,7 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 						break;
 				}
 				
-				usleep(82000);//51.2 mm/s
+				usleep(1000);//51.2 mm/s
 			}
 			else{
 				tempBoolSteps.first = true;//obstacle found
@@ -539,7 +539,7 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 	}
 	else{
 		for (int i = steps; i > 0; i--){
-			stepAmount = steps % 8;
+			stepAmount = i % 8;
 
 			//ultraDist = readUltrasonic(isMvForward);
 			
@@ -639,7 +639,7 @@ std::pair<bool, float> Hardware::step(int steps, bool isMvForward){
 						break;
 				}
 				
-				usleep(82000);//51.2 mm/s
+				usleep(1000);//51.2 mm/s
 			}
 			else{
 				tempBoolSteps.first = true;//obstacle found
@@ -696,109 +696,116 @@ std::vector<float> Hardware::readBeacons(std::string* beaconID, int amount){//re
 	std::vector<std::pair<std::string, float>> localRegister;
 	std::vector<float> radii;
 	
-	try{
-		for (int i = 0; i < splitHCI.size(); i++){
-			std::vector<std::string> splitHCIL = split(splitHCI[i], '\n');
+	if (splitHCI.size() == 1024){
+		try{
+			for (int i = 0; i < splitHCI.size(); i++){
+				std::vector<std::string> splitHCIL = split(splitHCI[i], '\n');
 			
-			if (split(splitHCIL[0], ' ').size() == 9 && splitHCIL.size() > 6){
-				//std::cout << splitHCIL[0] << std::endl;
+				if (split(splitHCIL[0], ' ').size() == 9 && splitHCIL.size() > 6){
+					//std::cout << splitHCIL[0] << std::endl;
 			
-				//std::cout << split(splitHCIL[0], ' ')[8] << std::endl;
+					//std::cout << split(splitHCIL[0], ' ')[8] << std::endl;
 			
-				if ((split(splitHCIL[0], ' ')[8] == "39" && splitHCIL.size() == 8) || (split(splitHCIL[0], ' ')[8] == "42" && splitHCIL.size() == 7)){				
-					for (int k = 0; k < amount; k++){
-						//std::cout << beaconID[k] << " " << split(splitHCIL[3], ' ')[7] << std::endl;
+					if ((split(splitHCIL[0], ' ')[8] == "39" && splitHCIL.size() == 8) || (split(splitHCIL[0], ' ')[8] == "42" && splitHCIL.size() == 7)){				
+						for (int k = 0; k < amount; k++){
+							//std::cout << beaconID[k] << " " << split(splitHCIL[3], ' ')[7] << std::endl;
 					
-						if (beaconID[k] == split(splitHCIL[3], ' ')[7]){//beacon exists in register
-							bool isInLocReg = false;
-							int location;
+							if (beaconID[k] == split(splitHCIL[3], ' ')[7]){//beacon exists in register
+								bool isInLocReg = false;
+								int location;
 							
-							//std::cout << std::to_string(beaconsFound) << std::endl;
+								//std::cout << std::to_string(beaconsFound) << std::endl;
 							
-							for (int j = 0; j < beaconsFound; j++){
-								if (localRegister[j].first == split(splitHCIL[3], ' ')[7]){//mac address for beacon is already in register
-									isInLocReg = true;
-									location = j;
+								for (int j = 0; j < beaconsFound; j++){
+									if (localRegister[j].first == split(splitHCIL[3], ' ')[7]){//mac address for beacon is already in register
+										isInLocReg = true;
+										location = j;
 									
-									//std::cout << "If J: " << localRegister[j].first << " " << split(splitHCIL[3], ' ')[7] << std::endl;
+										//std::cout << "If J: " << localRegister[j].first << " " << split(splitHCIL[3], ' ')[7] << std::endl;
 									
-									break;
-								}
-								else{
-									//std::cout << "Else J: " << localRegister[j].first << " " << split(splitHCIL[3], ' ')[7] << std::endl;
-								}
+										break;
+									}
+									else{
+										//std::cout << "Else J: " << localRegister[j].first << " " << split(splitHCIL[3], ' ')[7] << std::endl;
+									}
 								
-							}
+								}
 						
-							if (!isInLocReg){//adds to register if not already present
-								std::pair<std::string, float> tempPair;
-								float temp;
+								if (!isInLocReg){//adds to register if not already present
+									std::pair<std::string, float> tempPair;
+									float temp;
 							
-								tempPair.first = split(splitHCIL[3], ' ')[7];//add mac to local register
+									tempPair.first = split(splitHCIL[3], ' ')[7];//add mac to local register
 							
-								if (split(splitHCIL[0], ' ')[8] == "39"){
-									temp = std::stof(split(splitHCIL[7], ' ')[7]);//add rssi to local register
-									tempPair.second = findDistance(temp);
+									if (split(splitHCIL[0], ' ')[8] == "39"){
+										temp = std::stof(split(splitHCIL[7], ' ')[7]);//add rssi to local register
+										tempPair.second = findDistance(temp);
+									}
+									else{
+										temp = std::stof(split(splitHCIL[6], ' ')[7]);
+										tempPair.second = findDistance(temp);
+									}
+							
+									localRegister.push_back(tempPair);
+								
+									//std::cout << "localReg: " << std::to_string(tempPair.second) << " " << tempPair.first << std::endl;
+								
+									beaconsFound++;
 								}
 								else{
-									temp = std::stof(split(splitHCIL[6], ' ')[7]);
-									tempPair.second = findDistance(temp);
-								}
+									float temp;
+									float tempSec = localRegister[location].second;
 							
-								localRegister.push_back(tempPair);
+									if (split(splitHCIL[0], ' ')[8] == "39"){
+										temp = std::stof(split(splitHCIL[7], ' ')[7]);
 								
-								//std::cout << "localReg: " << std::to_string(tempPair.second) << " " << tempPair.first << std::endl;
+										localRegister[location].second = (tempSec + findDistance(temp)) / 2;//add rssi to local register
+									}
+									else{
+										temp = std::stof(split(splitHCIL[6], ' ')[7]);
 								
-								beaconsFound++;
-							}
-							else{
-								float temp;
-								float tempSec = localRegister[location].second;
+										localRegister[location].second = (tempSec + findDistance(temp)) / 2;//add rssi to local register
+									}
+								}//end else
 							
-								if (split(splitHCIL[0], ' ')[8] == "39"){
-									temp = std::stof(split(splitHCIL[7], ' ')[7]);
-								
-									localRegister[location].second = (tempSec + findDistance(temp)) / 2;//add rssi to local register
-								}
-								else{
-									temp = std::stof(split(splitHCIL[6], ' ')[7]);
-								
-									localRegister[location].second = (tempSec + findDistance(temp)) / 2;//add rssi to local register
-								}
-							}//end else
-							
-						}//end if
-					}//end for
-				}//end if
-			}
-		}//end for
+							}//end if
+						}//end for
+					}//end if
+				}
+			}//end for
 		
 		
-		for (int k = 0; k < amount; k++){
-			for (int i = 0; i < localRegister.size(); i++){
-				if (localRegister[i].first == beaconID[k]){//sorts based on original ordering
-					radii.push_back(localRegister[i].second);
+			for (int k = 0; k < amount; k++){
+				for (int i = 0; i < localRegister.size(); i++){
+					if (localRegister[i].first == beaconID[k]){//sorts based on original ordering
+						radii.push_back(localRegister[i].second);
 					
-					//std::cout << "Radii " << std::to_string(radii[k]) << std::endl;
-				}
-				else{
-					//std::cout << std::to_string(k) << std::to_string(i) << std::endl;
+						//std::cout << "Radii " << std::to_string(radii[k]) << std::endl;
+					}
+					else{
+						//std::cout << std::to_string(k) << std::to_string(i) << std::endl;
+					}
 				}
 			}
-		}
-		/*
-		float* temp = &radii[0];
+			/*
+			float* temp = &radii[0];
 		
-		for (int k = 0; k < localRegister.size(); k++){
-			std::cout << localRegister[k].first << " radius: " << std::to_string(temp[k]) << std::endl;
+			for (int k = 0; k < localRegister.size(); k++){
+				std::cout << localRegister[k].first << " radius: " << std::to_string(temp[k]) << std::endl;
+			}
+			*/
+			std::cout << "-Beacons found." << std::endl;
+		
+			return radii;
 		}
-		*/
-		std::cout << "Beacons found." << std::endl;
+		catch (std::exception ex){
+		
+		}
+	}
+	else{
+		std::cout << "-Please connect bluetooth device and try again." << std::endl;
 		
 		return radii;
-	}
-	catch (std::exception ex){
-		
 	}
 }
 

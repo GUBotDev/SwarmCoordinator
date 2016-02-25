@@ -18,18 +18,19 @@ int main(int argc, char **argv) {
 				
 				float x, y;
 				
-				std:: cin >> x >> y;
-				
-				std::cout << "#Performing multilateration..." << std::endl;
+				std::cin >> x >> y;
 				
 				tempPos = node.returnXY();
 				
-				std::cout << "#Moving to Position..." << std::endl;
+				if (tempPos.first == -999 && tempPos.second == -999){
+					std::cout << "**Error**" << std::endl;
+				}
+				else{
+					node.moveToPosition(x, y, tempPos.first, tempPos.second);
+				}
 				
-				node.moveToPosition(x, y, tempPos.first, tempPos.second);
 				
-				std::cout << "#Performing multilateration..." << std::endl;
-				
+				/*
 				bool temp;
 				
 				while(temp == false){
@@ -39,6 +40,7 @@ int main(int argc, char **argv) {
 				
 					temp = node.checkTolerances(x, y, tempPos.first, tempPos.second);
 				}
+				*/
 				break;
 			case 1:
 				//

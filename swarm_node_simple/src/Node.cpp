@@ -12,13 +12,17 @@ void Node::moveToPosition(float x, float y, float xPos, float yPos) {// moves si
 		correctAngle();
 	}
 
-	newX = x - xPos;
-	newY = y - yPos;
-	angle = atan2(newY, newX);
+	newX = xPos - x;
+	newY = yPos - y;
+	angle = atan2(newY, newX) * 57;
 	
-	hardware.turn(angle);
+	std::cout << "-Turning to " << angle << std::endl;
+	
+	turnTo(angle);
 
 	distance = sqrt((newX * newX) + (newY * newY));
+	
+	std::cout << "-Moving " << distance << " to X:" << newX << " Y:" << newY << std::endl; 
 	
 	wasObjectFound = hardware.moveForward(distance);
 	
@@ -30,6 +34,8 @@ void Node::turnTo(float targetDirection){
 	//currentDirection = hardware.readCompass();
 	
 	angle = targetDirection - currentDirection;
+	
+	std::cout << "-Turning " << angle << std::endl;
 	
 	hardware.turn(angle);
 }
@@ -43,15 +49,23 @@ std::pair<float, float> Node::returnXY(){
 		
 	radii = hardware.readBeacons(beaconID, amount);
 	
-	float* tempRadius = &radii[0];
-	
-	for (int k = 0; k < amount; k++){
-		std::cout << "Radius:" << std::to_string(radii[k]) << " X:" << xBeacons[k] << " Y:" << yBeacons[k] << std::endl;
-	}
+	if (radii.size() == amount){
+		float* tempRadius = &radii[0];
+		/*
+		for (int k = 0; k < amount; k++){
+			//std::cout << "Radius:" << std::to_string(radii[k]) << " X:" << xBeacons[k] << " Y:" << yBeacons[k] << std::endl;
+		}
+		*/
 		
-	temp = calculate.multilateration(tempRadius, xBeacons, yBeacons, numBeacons);
-	
-	std::cout << "Location: " << temp.first << ", " << temp.second << std::endl;
+		std::cout << "-Performing multilateration..." << std::endl;
+		temp = calculate.multilateration(tempRadius, xBeacons, yBeacons, numBeacons);
+	}
+	else{
+		std::cout << "-Localization failed." << std::endl;
+		
+		temp.first = -999;
+		temp.second = -999;
+	}
 	
 	return temp;
 }
@@ -73,13 +87,19 @@ bool Node::checkTolerances(float x, float y, float xPos, float yPos){
 void Node::correctAngle(){
 	std::pair<float, float> xy1 = returnXY();
 	
+	std::cout << "-Current Position X:" << xy1.first << " Y:" << xy1.second << std::endl; 
+	
 	wasObjectFound = hardware.moveForward(checkDistance);
 
 	std::pair<float, float> xy2 = returnXY();
+	
+	std::cout << "-Current Position X:" << xy1.first << " Y:" << xy1.second << std::endl; 
 
 	currentDirection = calculate.determineAngle(xy2.first, xy2.second, xy1.first, xy1.second);
 	
 	turnTo(0);
+	
+	directionKnown = true;
 }
 
 
