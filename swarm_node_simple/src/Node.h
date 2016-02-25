@@ -15,8 +15,9 @@ public:
 	void moveToPosition(float x, float y, float xPos, float yPos);
 	void turnTo(float targetDirection);
 	std::pair<float, float> returnXY();
-	void checkTolerances(float angle);
-	void checkTolerances(float x, float y, float xPos, float yPos);
+	void correctAngle();
+	bool checkTolerances(float x, float y, float xPos, float yPos);
+	void setKnownDirFalse();
 private:
 	const bool hasBeacon = false;//report relatively static xy position to master
 	int beaconNum;//the number assigned by the master if the node has a beacon
@@ -32,10 +33,11 @@ private:
 	const float positionTolerance = 0.25;//+/- meters
 	const float checkIncrement = 0.25;//+/- meters
 	const float scanDistance = 2.5;
+	const float checkDistance = 0.25;
 	const float angleTolerance = 10;//+/-degrees
-	bool beaconsSet = false;
 	static Calculation calculate;
 	static Hardware hardware;
+	bool directionKnown;
 	float xBeacons[4] = { -1, 1, -1, 1 };
 	float yBeacons[4] = { 1, 1, -1, -1 };
 	std::string beaconID[4] = { "CA:5D:E6:8B:34:58", "D0:16:DF:6C:6E:E1", "C8:04:02:87:D1:CA", "EB:E7:B3:42:48:89"};

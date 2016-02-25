@@ -21,7 +21,7 @@ public:
 	std::pair<bool, float> moveBackward(float meters);
 	std::tuple<bool, float, float> forwardScan();
 	std::pair<bool, float> fullScan();
-	float* readBeacons(std::string* beaconID, int amount);//return radius
+	std::vector<float> readBeacons(std::string* beaconID, int amount);//return radius
 	float readUltrasonic(bool isUlForward);//returns distance in front of node
 	float readCompass();
 	float readGravityVector();
@@ -32,7 +32,7 @@ private:
 	std::pair<bool, float> step(int steps, bool isMvForward);
 	std::pair<bool, float> foundObject;
 	const float pi = 3.141592653;
-	const float stepAngle = 5.889;//required
+	const float stepAngle = 0.087891;//required
 	const float wheelRadius = 0.04075;//required
 	const float robotRadius = 0.0825;//required
 	const float objDisTolerance = 1;//meters 

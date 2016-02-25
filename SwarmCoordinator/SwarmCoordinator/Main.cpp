@@ -6,9 +6,9 @@ int main() {
 	Calculation calcObj;
 	std::pair<float, float> position;
 	float degree;
-	float radius[3] = { 15, 5, 6 };
-	float x[3] = { -10, 0, 10 };//static x positions
-	float y[3] = { -10, 10, -10 };//static y positions
+	float radius[4] = { 1.4, 0.25, 1.75, 1.15 };
+	float x[4] = { -1, 1, -1, 1 };//static x positions
+	float y[4] = { 1, 1, -1, -1 };//static y positions
 
 	position = calcObj.multilateration(radius, x, y, 3);
 

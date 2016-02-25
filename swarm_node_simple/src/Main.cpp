@@ -7,23 +7,38 @@ int main(int argc, char **argv) {
 		std::pair<float, float> tempPos;
 		Node node;
 		
-		std::cout << "Enter command" << std::endl;
+		std::cout << "#Enter command" << std::endl;
 	
 		std::cin >> input;
 		
 		switch (input){
 			case 0:
 				//
-				std::cout << "Enter position" << std::endl;
+				std::cout << "#Enter position (x, y)" << std::endl;
 				
 				float x, y;
 				
 				std:: cin >> x >> y;
 				
-				tempPos = node.returnXY();
-				node.moveToPosition(x, y, tempPos.first, tempPos.second);
-				node.checkTolerances(x, y, tempPos.first, tempPos.second);
+				std::cout << "#Performing multilateration..." << std::endl;
 				
+				tempPos = node.returnXY();
+				
+				std::cout << "#Moving to Position..." << std::endl;
+				
+				node.moveToPosition(x, y, tempPos.first, tempPos.second);
+				
+				std::cout << "#Performing multilateration..." << std::endl;
+				
+				bool temp;
+				
+				while(temp == false){
+					tempPos = node.returnXY();
+				
+					std::cout << "#Checking positional tolerance..." << std::endl;
+				
+					temp = node.checkTolerances(x, y, tempPos.first, tempPos.second);
+				}
 				break;
 			case 1:
 				//
